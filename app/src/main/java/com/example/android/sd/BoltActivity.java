@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,7 +12,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class BoltActivity extends AppCompatActivity {
+import com.example.android.sd.BoltFragments.BoltPageOne;
+
+public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFABNextClickListener{
 
 
     @Override
@@ -19,6 +22,14 @@ public class BoltActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bolt);
 
+        BoltPageOne fragment = new BoltPageOne();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .add(R.id.Activity_container,fragment)
+                .commit();
+    }
+
+    private void setupPageOne(){
         (findViewById(R.id.BPageOne_FABPrevious)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,10 +65,10 @@ public class BoltActivity extends AppCompatActivity {
 
             }
         });
-    }
 
+    }
     private void setupPageTwo(){
-        setContentView(R.layout.activity_bolt);
+
     }
 
     private Snackbar getSnackBar(CoordinatorLayout mCoordinateLayout){
@@ -71,5 +82,10 @@ public class BoltActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Log.i(getLocalClassName(),"Back Pressed");
+    }
+
+    @Override
+    public void onNextClicked(String boltGrade, String boltDia) {
+        Log.i("yo ho ho",boltGrade + boltDia);
     }
 }

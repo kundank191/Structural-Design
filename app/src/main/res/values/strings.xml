@@ -12,6 +12,9 @@
     <string name="enter_bolt_dia">Enter diameter of bolt in mm</string>
     <string name="empty_bolt_grade">Please enter bolt grade.</string>
     <string name="empty_bolt_dia">Please give the diameter of the bolt.</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- For Second page of bolted Connection -->
 
 </resources>
