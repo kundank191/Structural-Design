@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">SD</string>
+
+    <!-- For the First Screen -->
+    <string name="load_input_hint">Enter Service load in kN</string>
+    <string name="bolts_string">Bolted Connection</string>
+    <string name="welds_string">Welded Connection</string>
+    <string name="enter_service_load">Please Enter Service Load</string>
+
+    <!-- For First page of Bolted Connection -->
+    <string name="enter_bolt_grade">Enter the grade of bolt</string>
+    <string name="enter_bolt_dia">Enter diameter of bolt in mm</string>
+    <string name="empty_bolt_grade">Please enter bolt grade.</string>
+    <string name="empty_bolt_dia">Please give the diameter of the bolt.</string>
+    <!-- For Second page of bolted Connection -->
+
+</resources>
