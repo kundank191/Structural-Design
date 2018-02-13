@@ -6,65 +6,44 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.android.sd.BoltFragments.BoltPageOne;
 
-public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFABNextClickListener{
+public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFABNextClickListener,
+                                                                BoltPageOne.onFABPreviousClickListener{
 
 
+    private String Service_Load;
+    private String Factored_Load;
+    private String Bolt_value;
+    private String No_Of_Bolts;
+    private String Grade_Of_Bolts;
+    private String Dia_Of_Bolts;
+    private String End_Distance;
+    private String Pitch_Distance;
+    private String Bolt_Strength;
+    private String Area_Anc;
+    private String Area_Ago;
+    private String Section_long_side;
+    private String Section_short_side;
+    private String Section_thickness;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bolt);
 
-        BoltPageOne fragment = new BoltPageOne();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .add(R.id.Activity_container,fragment)
-                .commit();
+        if(savedInstanceState == null) {
+            BoltPageOne fragment = new BoltPageOne();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction()
+                    .add(R.id.Activity_container, fragment)
+                    .commit();
+        }
     }
 
     private void setupPageOne(){
-        (findViewById(R.id.BPageOne_FABPrevious)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        (findViewById(R.id.BPageOne_FABNext)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar snackbar;
-                EditText boltGradeText = (EditText) findViewById(R.id.BPageOne_BoltGrade);
-                EditText boltDiaText = (EditText) findViewById(R.id.BPageOne_BoltDia);
-                if(!TextUtils.isEmpty(boltGradeText.getText())){
-                    if(!TextUtils.isEmpty(boltDiaText.getText())){
-                        //For now create a snackBar
-                        snackbar = getSnackBar((CoordinatorLayout) findViewById(R.id.BPageOne_CoordinateLayout));
-                        snackbar.setText("Yatta");
-                        snackbar.show();
-
-                    } else {
-                        // Message user to insert bolt dia
-                        snackbar = getSnackBar((CoordinatorLayout) findViewById(R.id.BPageOne_CoordinateLayout));
-                        snackbar.setText(R.string.empty_bolt_dia);
-                        snackbar.show();
-                    }
-                } else {
-                    // Message user to insert bolt grade
-                    snackbar = getSnackBar((CoordinatorLayout) findViewById(R.id.BPageOne_CoordinateLayout));
-                    snackbar.setText(R.string.empty_bolt_grade);
-                    snackbar.show();
-                }
-
-            }
-        });
 
     }
     private void setupPageTwo(){
@@ -85,7 +64,13 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
     }
 
     @Override
-    public void onNextClicked(String boltGrade, String boltDia) {
-        Log.i("yo ho ho",boltGrade + boltDia);
+    public void onPageOneNextClicked(String boltGrade, String boltDia) {
+        Log.i(getLocalClassName(),"Param ! : " + boltGrade + "Param @ : " + boltDia);
+    }
+
+    @Override
+    public void onPageOnePreviousClicked() {
+        Log.i(getLocalClassName(),"Finishing ");
+        finish();
     }
 }

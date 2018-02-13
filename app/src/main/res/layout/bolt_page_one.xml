@@ -22,6 +22,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/BPageOne_BoltGrade"
+                android:maxLength="3"
                 android:hint="@string/enter_bolt_grade"
                 style="@style/EditText"
                 android:textColor="@color/colorWhite"/>
@@ -34,6 +35,7 @@
             android:layout_height="wrap_content">
             <EditText
                 android:id="@+id/BPageOne_BoltDia"
+                android:maxLength="2"
                 android:hint="@string/enter_bolt_dia"
                 style="@style/EditText"
                 android:textColor="@color/colorWhite"/>

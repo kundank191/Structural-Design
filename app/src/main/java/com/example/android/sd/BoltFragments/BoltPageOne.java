@@ -1,15 +1,20 @@
 package com.example.android.sd.BoltFragments;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.android.sd.R;
 
@@ -24,12 +29,16 @@ public class BoltPageOne extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM_GRADE = "param1";
     private static final String ARG_PARAM_DIA = "param2";
+
     onFABNextClickListener mListener;
+    onFABPreviousClickListener mPreviousListener;
+
     private String mGradeOfBolt;
     private String mDiaOfBolt;
+
     private EditText mBoltGradeE;
     private EditText mBoltDia;
-    private FloatingActionButton mNext;
+    private CoordinatorLayout mCoordinatorLayout;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -41,15 +50,15 @@ public class BoltPageOne extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param boltGrade Parameter 1.
+     * @param boltDia Parameter 2.
      * @return A new instance of fragment BoltPageOne.
      */
-    public static BoltPageOne newInstance(String param1, String param2) {
+    public static BoltPageOne newInstance(String boltGrade, String boltDia) {
         BoltPageOne fragment = new BoltPageOne();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM_GRADE, param1);
-        args.putString(ARG_PARAM_DIA, param2);
+        args.putString(ARG_PARAM_GRADE, boltGrade);
+        args.putString(ARG_PARAM_DIA, boltDia);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,10 +69,6 @@ public class BoltPageOne extends Fragment {
         if (getArguments() != null) {
             mGradeOfBolt = getArguments().getString(ARG_PARAM_GRADE);
             mDiaOfBolt = getArguments().getString(ARG_PARAM_DIA);
-            setupViews(mGradeOfBolt,mDiaOfBolt);
-        } else if(savedInstanceState != null){
-            mGradeOfBolt = savedInstanceState.getString(ARG_PARAM_GRADE);
-            mDiaOfBolt = savedInstanceState.getString(ARG_PARAM_DIA);
             setupViews(mGradeOfBolt,mDiaOfBolt);
         }
     }
@@ -78,24 +83,42 @@ public class BoltPageOne extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.bolt_page_one,container,false);
+
         mBoltGradeE = (EditText) rootView.findViewById(R.id.BPageOne_BoltGrade);
         mBoltDia = (EditText) rootView.findViewById(R.id.BPageOne_BoltDia);
-        mNext = (FloatingActionButton) rootView.findViewById(R.id.BPageOne_FABNext);
+        if(savedInstanceState != null){
+            mGradeOfBolt = savedInstanceState.getString(ARG_PARAM_GRADE);
+            mDiaOfBolt = savedInstanceState.getString(ARG_PARAM_DIA);
+            setupViews(mGradeOfBolt,mDiaOfBolt);
+        }
+
+        mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.BPageOne_CoordinateLayout);
+        FloatingActionButton mNext = rootView.findViewById(R.id.BPageOne_FABNext);
+        FloatingActionButton mPrevious = rootView.findViewById(R.id.BPageOne_FABPrevious);
         mNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mListener.onNextClicked("hi","hi");
+                if(getBoltGrade() != null){
+                    if(getBoltDia() != null){
+                        mListener.onPageOneNextClicked(getBoltGrade(),getBoltDia());
+                    } else {
+                        Snackbar snackbar = getSnackBar(mCoordinatorLayout,R.string.enter_bolt_dia);
+                        snackbar.show();
+                    }
+                } else {
+                    Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.enter_bolt_grade);
+                    snackbar.show();
+                }
+            }
+        });
+        mPrevious.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPreviousListener.onPageOnePreviousClicked();
             }
         });
         return rootView;
     }
-
-//    // TODO: Rename method, update argument and hook method into UI event
-//    public void onButtonPressed(Uri uri) {
-//        if (mListener != null) {
-//            mListener.onFragmentInteraction(uri);
-//        }
-//    }
 
     @Override
     public void onAttach(Context context) {
@@ -106,43 +129,62 @@ public class BoltPageOne extends Fragment {
             throw new ClassCastException(context.toString() +
                     "Must Implement on Next Click Listener");
         }
+        try {
+            mPreviousListener = (onFABPreviousClickListener) context;
+        } catch (ClassCastException e){
+            throw new ClassCastException(context.toString() +
+                    "Must Implement onPreviousClick listener");
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         //mListener = null;
+        mListener = null;
+        mPreviousListener = null;
     }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        if(!TextUtils.isEmpty(mBoltGradeE.getText())) {
-            mGradeOfBolt = mBoltGradeE.getText().toString();
-            outState.putString(ARG_PARAM_GRADE, mGradeOfBolt);
-        }
-        if(!TextUtils.isEmpty(mBoltDia.getText())) {
-            mDiaOfBolt = mBoltDia.getText().toString();
-            outState.putString(ARG_PARAM_DIA, mDiaOfBolt);
+        if(getBoltGrade() != null && getBoltDia() != null) {
+            outState.putString(ARG_PARAM_GRADE, getBoltGrade());
+            outState.putString(ARG_PARAM_DIA, getBoltDia());
         }
         super.onSaveInstanceState(outState);
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-//    public interface OnFragmentInteractionListener {
-//        // TODO: Update argument type and name
-//        void onFragmentInteraction(Uri uri);
-//    }
+    @Nullable
+    private String getBoltGrade(){
+        if(!TextUtils.isEmpty(mBoltGradeE.getText())){
+            return mBoltGradeE.getText().toString();
+        } else {
+            return null;
+        }
+    }
+
+    @Nullable
+    private String getBoltDia(){
+        if(!TextUtils.isEmpty(mBoltDia.getText())){
+            return mBoltDia.getText().toString();
+        } else {
+            return null;
+        }
+    }
+
+    private Snackbar getSnackBar(CoordinatorLayout mCoordinateLayout , int stringMessageID){
+        Snackbar snackbar = Snackbar.make(mCoordinateLayout, stringMessageID, Snackbar.LENGTH_SHORT);
+        snackbar.getView().setBackgroundColor(Color.WHITE);
+        TextView textView = (snackbar.getView()).findViewById(android.support.design.R.id.snackbar_text);
+        textView.setTextColor(Color.argb(255, 3, 169, 244));
+        return snackbar;
+    }
 
     public interface onFABNextClickListener{
-        void onNextClicked(String boltGrade, String boltDia);
+        void onPageOneNextClicked(String boltGrade, String boltDia);
+    }
+
+    public interface onFABPreviousClickListener{
+        void onPageOnePreviousClicked();
     }
 }
