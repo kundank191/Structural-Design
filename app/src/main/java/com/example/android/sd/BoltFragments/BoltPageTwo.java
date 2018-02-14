@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -12,6 +13,9 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import com.example.android.sd.R;
+
+import utils.FunctionKit;
+import utils.Variables;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,8 +35,13 @@ public class BoltPageTwo extends Fragment {
     private String mGradeOfBolt;
     private String mDiaOfBolt;
 
-    private EditText mBoltGradeE;
-    private EditText mBoltDia;
+    private EditText ETSectionL;
+    private EditText ETSectionH;
+    private EditText ETSectionT;
+    private EditText ETSectionA;
+    private EditText ETSectionB;
+    private EditText ETSectionC;
+    private EditText ETSectionMI;
     private CoordinatorLayout mCoordinatorLayout;
 
     //private OnFragmentInteractionListener mListener;
@@ -75,45 +84,69 @@ public class BoltPageTwo extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.bolt_page_two,container,false);
-//
-//        mBoltGradeE = (EditText) rootView.findViewById(R.id.BPageOne_BoltGrade);
-//        mBoltDia = (EditText) rootView.findViewById(R.id.BPageOne_BoltDia);
-//        if(savedInstanceState != null){
-//            mGradeOfBolt = savedInstanceState.getString(ARG_PARAM_GRADE);
-//            mDiaOfBolt = savedInstanceState.getString(ARG_PARAM_DIA);
-//            setupViews(mGradeOfBolt,mDiaOfBolt);
-//        }
-//
-//        mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.BPageOne_CoordinateLayout);
-//        FloatingActionButton mNext = rootView.findViewById(R.id.BPageOne_FABNext);
-//        FloatingActionButton mPrevious = rootView.findViewById(R.id.BPageOne_FABPrevious);
-//        mNext.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if(getBoltGrade() != null){
-//                    if(Float.parseFloat(getBoltGrade()) <= 10) {
-//                        if (getBoltDia() != null) {
-//                            mListener.onPageOneNextClicked(getBoltGrade(), getBoltDia());
-//                        } else {
-//                            Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.enter_bolt_dia);
-//                            snackbar.show();
-//                        }
-//                    } else {
-//                        Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.wrong_bolt_grade);
-//                        snackbar.show();
-//                    }
-//                } else {
-//                    Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.enter_bolt_grade);
-//                    snackbar.show();
-//                }
-//            }
-//        });
-//        mPrevious.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                mPreviousListener.onPageOnePreviousClicked();
-//            }
-//        });
+
+        ETSectionL = (EditText) rootView.findViewById(R.id.BPageTwo_l);
+        ETSectionH = (EditText) rootView.findViewById(R.id.BPageTwo_h);
+        ETSectionT = (EditText) rootView.findViewById(R.id.BPageTwo_t);
+        ETSectionA = (EditText) rootView.findViewById(R.id.BPageTwo_a);
+        ETSectionB = (EditText) rootView.findViewById(R.id.BPageTwo_b);
+        ETSectionC = (EditText) rootView.findViewById(R.id.BPageTwo_c);
+        ETSectionMI = (EditText) rootView.findViewById(R.id.BPageTwo_MI);
+        mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.BPageTwo_CoordinateLayout);
+        if(savedInstanceState != null){
+            setupViews(savedInstanceState);
+        }
+        (rootView.findViewById(R.id.BPageTwo_FABNext)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(dataFrom(ETSectionL) != null){
+                    if(dataFrom(ETSectionH) != null){
+                        if(dataFrom(ETSectionT) != null){
+                            if(dataFrom(ETSectionA) != null){
+                                if(dataFrom(ETSectionB) != null){
+                                    if(dataFrom(ETSectionC) != null){
+                                        if(dataFrom(ETSectionMI) != null){
+                                            Bundle bundle = new Bundle();
+                                            bundle.putString(Variables.section_l,dataFrom(ETSectionL));
+                                            bundle.putString(Variables.section_h,dataFrom(ETSectionH));
+                                            bundle.putString(Variables.section_t,dataFrom(ETSectionT));
+                                            bundle.putString(Variables.section_a,dataFrom(ETSectionA));
+                                            bundle.putString(Variables.section_b,dataFrom(ETSectionB));
+                                            bundle.putString(Variables.section_c,dataFrom(ETSectionC));
+                                            bundle.putString(Variables.section_MI,dataFrom(ETSectionMI));
+                                            mListener.onPageTwoNextClicked(bundle);
+                                        } else {
+                                            Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout,R.string.enter_section_MI);
+                                            snackbar.show();
+                                        }
+                                    } else {
+                                        Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout,R.string.enter_section_c);
+                                        snackbar.show();
+                                    }
+                                } else {
+                                    Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout,R.string.enter_section_b);
+                                    snackbar.show();
+                                }
+                            } else {
+                                Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout,R.string.enter_section_a);
+                                snackbar.show();
+                            }
+                        } else {
+                            Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout,R.string.enter_section_thickness);
+                            snackbar.show();
+                        }
+
+                    } else {
+                        Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout,R.string.enter_section_breadth);
+                        snackbar.show();
+                    }
+
+                } else {
+                    Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout,R.string.enter_section_length);
+                    snackbar.show();
+                }
+            }
+        });
         return rootView;
     }
 
@@ -161,7 +194,7 @@ public class BoltPageTwo extends Fragment {
     }
 
     public interface onFABNextClickListener{
-        void onPageTwoNextClicked(String boltGrade, String boltDia);
+        void onPageTwoNextClicked(Bundle dataBundle);
     }
 
     public interface onFABPreviousClickListener{

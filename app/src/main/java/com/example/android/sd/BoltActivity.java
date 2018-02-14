@@ -1,13 +1,9 @@
 package com.example.android.sd;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.widget.TextView;
 
 import com.example.android.sd.BoltFragments.BoltPageOne;
 import com.example.android.sd.BoltFragments.BoltPageTwo;
@@ -77,29 +73,6 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
 
     }
 
-    private Snackbar getSnackBar(CoordinatorLayout mCoordinateLayout){
-        Snackbar snackbar = Snackbar.make(mCoordinateLayout, R.string.enter_service_load, Snackbar.LENGTH_SHORT);
-        snackbar.getView().setBackgroundColor(Color.WHITE);
-        TextView textView = (snackbar.getView()).findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(Color.argb(255, 3, 169, 244));
-        return snackbar;
-    }
-
-    @Override
-    public void onBackPressed() {
-        Log.i(getLocalClassName(),"Back Pressed");
-    }
-
-    @Override
-    public void onPageOneNextClicked(String boltGrade, String boltDia) {
-        Log.i(getLocalClassName(),"Param ! : " + boltGrade + "Param @ : " + boltDia);
-        BoltPageTwo fragment = new BoltPageTwo();
-        fragment.setArguments(getBundleForPageTwo());
-        mFragmentManager.beginTransaction()
-                .replace(R.id.Activity_container,fragment)
-                .commit();
-    }
-
     /**
      *
      * @return a bundle for all the values required for page two
@@ -118,6 +91,20 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         return bundle;
     }
 
+
+    @Override
+    public void onBackPressed() {
+        Log.i(getLocalClassName(),"Back Pressed");
+    }
+
+    @Override
+    public void onPageOneNextClicked(String boltGrade, String boltDia) {
+        BoltPageTwo fragment = new BoltPageTwo();
+        fragment.setArguments(getBundleForPageTwo());
+        mFragmentManager.beginTransaction()
+                .replace(R.id.Activity_container,fragment)
+                .commit();
+    }
     @Override
     public void onPageOnePreviousClicked() {
         Log.i(getLocalClassName(),"Finishing ");
@@ -125,7 +112,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
     }
 
     @Override
-    public void onPageTwoNextClicked(String boltGrade, String boltDia) {
+    public void onPageTwoNextClicked(Bundle dataBundle) {
 
     }
 

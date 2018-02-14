@@ -17,4 +17,12 @@ public class Variables {
     public static String endDistance = "Bolt Grade6";
     public static String Anc = "Bolt Grade7";
     public static String Ago = "Bolt Grade8";
+
+    public static String section_l = "Section l";
+    public static String section_h = "Section adas";
+    public static String section_t = "Section asdasd";
+    public static String section_a = "Section asdasdas";
+    public static String section_b = "Sectionfs";
+    public static String section_c = "Section dfhdf";
+    public static String section_MI = "Section dfggfs";
 }

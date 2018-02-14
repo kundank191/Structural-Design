@@ -34,8 +34,16 @@
     <string name="Value_c">c</string>
     <string name="EnterLeastMomentOfInertia">Enter Least M.I in mm4</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <!-- For Second page of bolted Connection -->
+    <string name="enter_section_length">Enter the length of section</string>
+    <string name="enter_section_breadth">Enter the breadth of section</string>
+    <string name="enter_section_thickness">Enter the thickness of section</string>
+    <string name="enter_section_a">Enter the a value of section for bolted connection</string>
+    <string name="enter_section_b">Enter the b of section for bolted connection</string>
+    <string name="enter_section_c">Enter the c of section for bolted connection</string>
+    <string name="enter_section_MI">Enter the Least area M.I. in mm2 of section</string>
+
+
+
 
 </resources>
