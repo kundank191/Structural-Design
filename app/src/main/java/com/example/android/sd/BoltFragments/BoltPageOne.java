@@ -99,10 +99,15 @@ public class BoltPageOne extends Fragment {
             @Override
             public void onClick(View view) {
                 if(getBoltGrade() != null){
-                    if(getBoltDia() != null){
-                        mListener.onPageOneNextClicked(getBoltGrade(),getBoltDia());
+                    if(Float.parseFloat(getBoltGrade()) <= 10) {
+                        if (getBoltDia() != null) {
+                            mListener.onPageOneNextClicked(getBoltGrade(), getBoltDia());
+                        } else {
+                            Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.enter_bolt_dia);
+                            snackbar.show();
+                        }
                     } else {
-                        Snackbar snackbar = getSnackBar(mCoordinatorLayout,R.string.enter_bolt_dia);
+                        Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.wrong_bolt_grade);
                         snackbar.show();
                     }
                 } else {
