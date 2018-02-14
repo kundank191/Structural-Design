@@ -18,26 +18,26 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
                                                                 BoltPageTwo.onFABPreviousClickListener{
 
 
-    private String Service_Load;
-    private String Factored_Load;
-    private String Bolt_value;
-    private String No_Of_Bolts;
-    private String Grade_Of_Bolts;
-    private String Dia_Of_Bolts;
-    private String End_Distance;
-    private String Pitch_Distance;
-    private String ConnectionLength_Lc;
-    private String Bolt_Strength;
-    private String Area_Anc;
-    private String Area_Ago;
-    private String Section_l;
-    private String Section_h;
-    private String Section_t;
-    private String Section_a;
-    private String Section_b;
-    private String Section_c;
-    private String Section_MI;
-    private String SR;
+    private String Service_Load = Variables.defaultValue;
+    private String Factored_Load = Variables.defaultValue;
+    private String Bolt_value = Variables.defaultValue;
+    private String No_Of_Bolts = Variables.defaultValue;
+    private String Grade_Of_Bolts = Variables.defaultValue;
+    private String Dia_Of_Bolts = Variables.defaultValue;
+    private String End_Distance = Variables.defaultValue;
+    private String Pitch_Distance = Variables.defaultValue;
+    private String ConnectionLength_Lc = Variables.defaultValue;
+    private String Bolt_Strength = Variables.defaultValue;
+    private String Area_Anc = Variables.defaultValue;
+    private String Area_Ago = Variables.defaultValue;
+    private String Section_l = Variables.defaultValue;
+    private String Section_h = Variables.defaultValue;
+    private String Section_t = Variables.defaultValue;
+    private String Section_a = Variables.defaultValue;
+    private String Section_b = Variables.defaultValue;
+    private String Section_c = Variables.defaultValue;
+    private String Section_MI = Variables.defaultValue;
+    private String SR = Variables.defaultValue;
 
     FragmentManager mFragmentManager;
     @Override

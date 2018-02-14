@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.android.sd.R;
 
@@ -32,8 +33,7 @@ public class BoltPageTwo extends Fragment {
     onFABNextClickListener mListener;
     onFABPreviousClickListener mPreviousListener;
 
-    private String mGradeOfBolt;
-    private String mDiaOfBolt;
+    private Bundle startUpBundle = null;
 
     private EditText ETSectionL;
     private EditText ETSectionH;
@@ -43,6 +43,7 @@ public class BoltPageTwo extends Fragment {
     private EditText ETSectionC;
     private EditText ETSectionMI;
     private CoordinatorLayout mCoordinatorLayout;
+    private TextView TVGrade, TVDia, TVBoltValue, TVNo, TVBoltStrength, TVPitch, TVEnd, TVAnc, TVAgo;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -71,13 +72,23 @@ public class BoltPageTwo extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            setupViews(getArguments());
+            startUpBundle = getArguments();
+        } else {
+            startUpBundle = null;
         }
     }
 
     //Setting up the views if value is provided
     private void setupViews(Bundle bundle){
-
+        TVGrade.setText(bundle.getString(Variables.gradeOfBolt));
+        TVDia.setText(bundle.getString(Variables.diaOfBolt));
+        TVBoltValue.setText(bundle.getString(Variables.valueBolt));
+        TVNo.setText(bundle.getString(Variables.numberBolt));
+        TVBoltStrength.setText(bundle.getString(Variables.strengthBolt));
+        TVPitch.setText(bundle.getString(Variables.pitch));
+        TVEnd.setText(bundle.getString(Variables.endDistance));
+        TVAnc.setText(bundle.getString(Variables.Anc));
+        TVAgo.setText(bundle.getString(Variables.Ago));
     }
 
     @Override
@@ -93,8 +104,20 @@ public class BoltPageTwo extends Fragment {
         ETSectionC = (EditText) rootView.findViewById(R.id.BPageTwo_c);
         ETSectionMI = (EditText) rootView.findViewById(R.id.BPageTwo_MI);
         mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.BPageTwo_CoordinateLayout);
+        TVGrade = (TextView) rootView.findViewById(R.id.BPageTwo_TV_BoltGrade);
+        TVDia = (TextView) rootView.findViewById(R.id.BPageTwo_TV_BoltDia);
+        TVBoltValue = (TextView) rootView.findViewById(R.id.BPageTwo_TV_BoltValue);
+        TVNo = (TextView) rootView.findViewById(R.id.BPageTwo_TV_NoOfBolts);
+        TVBoltStrength = (TextView) rootView.findViewById(R.id.BPageTwo_TV_BoltStrength);
+        TVPitch = (TextView) rootView.findViewById(R.id.BPageTwo_TV_Pitch);
+        TVEnd = (TextView) rootView.findViewById(R.id.BPageTwo_TV_EndDistance);
+        TVAnc = (TextView) rootView.findViewById(R.id.BPageTwo_TV_AreaAnc);
+        TVAgo = (TextView) rootView.findViewById(R.id.BPageTwo_TV_AreaAgo);
         if(savedInstanceState != null){
-            setupViews(savedInstanceState);
+ //           setupViews(savedInstanceState);
+        }
+        if(startUpBundle != null){
+            setupViews(startUpBundle);
         }
         (rootView.findViewById(R.id.BPageTwo_FABNext)).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +168,13 @@ public class BoltPageTwo extends Fragment {
                     Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout,R.string.enter_section_length);
                     snackbar.show();
                 }
+            }
+        });
+
+        (rootView.findViewById(R.id.BPageTwo_FABPrevious)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mPreviousListener.onPageTwoPreviousClicked();
             }
         });
         return rootView;
