@@ -40,6 +40,9 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
     private String SR = Variables.defaultValue;
 
     FragmentManager mFragmentManager;
+    private BoltPageOne boltPageOneFragment = null;
+    private BoltPageTwo boltPageTwoFragment = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,9 +50,11 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         updateValuesOnLaunch();
         mFragmentManager = getSupportFragmentManager();
         if(savedInstanceState == null) {
-            BoltPageOne fragment = new BoltPageOne();
+            if(boltPageOneFragment == null){
+                boltPageOneFragment = new BoltPageOne();
+            }
             mFragmentManager.beginTransaction()
-                    .add(R.id.Activity_container, fragment)
+                    .add(R.id.Activity_container, boltPageOneFragment)
                     .commit();
         }
     }
@@ -99,10 +104,13 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
 
     @Override
     public void onPageOneNextClicked(String boltGrade, String boltDia) {
-        BoltPageTwo fragment = new BoltPageTwo();
-        fragment.setArguments(getBundleForPageTwo());
+        updateValuesAfterPageOne(boltGrade,boltDia);
+//        if(boltPageTwoFragment == null) {
+            boltPageTwoFragment = new BoltPageTwo();
+            boltPageTwoFragment.setArguments(getBundleForPageTwo());
+ //       }
         mFragmentManager.beginTransaction()
-                .replace(R.id.Activity_container,fragment)
+                .replace(R.id.Activity_container,boltPageTwoFragment)
                 .commit();
     }
     @Override
@@ -118,6 +126,11 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
 
     @Override
     public void onPageTwoPreviousClicked() {
-
+//        if (boltPageOneFragment == null){
+            boltPageOneFragment = new BoltPageOne();
+//        }
+        mFragmentManager.beginTransaction()
+                .replace(R.id.Activity_container,boltPageOneFragment)
+                .commit();
     }
 }
