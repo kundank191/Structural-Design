@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.example.android.sd.R;
 
+import utils.Variables;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -35,6 +37,7 @@ public class BoltPageOne extends Fragment {
 
     private String mGradeOfBolt;
     private String mDiaOfBolt;
+    private Bundle dataBundle = null;
 
     private EditText mBoltGradeE;
     private EditText mBoltDia;
@@ -67,9 +70,7 @@ public class BoltPageOne extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mGradeOfBolt = getArguments().getString(ARG_PARAM_GRADE);
-            mDiaOfBolt = getArguments().getString(ARG_PARAM_DIA);
-            setupViews(mGradeOfBolt,mDiaOfBolt);
+            dataBundle = getArguments();
         }
     }
 
@@ -86,10 +87,15 @@ public class BoltPageOne extends Fragment {
 
         mBoltGradeE = (EditText) rootView.findViewById(R.id.BPageOne_BoltGrade);
         mBoltDia = (EditText) rootView.findViewById(R.id.BPageOne_BoltDia);
-        if(savedInstanceState != null){
-            mGradeOfBolt = savedInstanceState.getString(ARG_PARAM_GRADE);
-            mDiaOfBolt = savedInstanceState.getString(ARG_PARAM_DIA);
-            setupViews(mGradeOfBolt,mDiaOfBolt);
+//        if(savedInstanceState != null){
+//            mGradeOfBolt = savedInstanceState.getString(ARG_PARAM_GRADE);
+//            mDiaOfBolt = savedInstanceState.getString(ARG_PARAM_DIA);
+//            setupViews(mGradeOfBolt,mDiaOfBolt);
+//        }
+        if(dataBundle != null){
+            mGradeOfBolt = dataBundle.getString(Variables.gradeOfBolt);
+            mDiaOfBolt = dataBundle.getString(Variables.diaOfBolt);
+            setupViews(mGradeOfBolt, mDiaOfBolt);
         }
 
         mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.BPageOne_CoordinateLayout);

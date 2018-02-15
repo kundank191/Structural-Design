@@ -26,4 +26,10 @@ public class Variables {
     public static String section_b = "Sectionfs";
     public static String section_c = "Section dfhdf";
     public static String section_MI = "Section dfggfs";
+
+    public static String unitMM = " mm";
+    public static String unitMM2 = " mm2";
+    public static String unitMM4 = " mm4";
+    public static String unitKN = " kN";
+
 }

@@ -80,15 +80,15 @@ public class BoltPageTwo extends Fragment {
 
     //Setting up the views if value is provided
     private void setupViews(Bundle bundle){
-        TVGrade.setText(bundle.getString(Variables.gradeOfBolt));
-        TVDia.setText(bundle.getString(Variables.diaOfBolt));
-        TVBoltValue.setText(bundle.getString(Variables.valueBolt));
+        TVGrade.setText(bundle.getString(Variables.gradeOfBolt) );
+        TVDia.setText(String.format("%s%s", bundle.getString(Variables.diaOfBolt), Variables.unitMM));
+        TVBoltValue.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.valueBolt)), Variables.unitKN));
         TVNo.setText(bundle.getString(Variables.numberBolt));
-        TVBoltStrength.setText(bundle.getString(Variables.strengthBolt));
-        TVPitch.setText(bundle.getString(Variables.pitch));
-        TVEnd.setText(bundle.getString(Variables.endDistance));
-        TVAnc.setText(bundle.getString(Variables.Anc));
-        TVAgo.setText(bundle.getString(Variables.Ago));
+        TVBoltStrength.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.strengthBolt)), Variables.unitKN));
+        TVPitch.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.pitch)), Variables.unitMM));
+        TVEnd.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.endDistance)), Variables.unitMM));
+        TVAnc.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.Anc)), Variables.unitMM2));
+        TVAgo.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.Ago)), Variables.unitMM2));
     }
 
     @Override
