@@ -37,68 +37,68 @@
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/BoltDia"
-                    android:layout_row="1"
+                    android:layout_row="2"
                     android:layout_column="0"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/BoltDia"
-                    android:layout_row="1"
+                    android:layout_row="2"
                     android:id="@+id/BPageTwo_TV_BoltDia"
                     android:layout_column="1"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/BoltValue"
-                    android:layout_row="2"
+                    android:layout_row="5"
                     android:layout_column="0"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/BoltValue"
-                    android:layout_row="2"
+                    android:layout_row="5"
                     android:id="@+id/BPageTwo_TV_BoltValue"
                     android:layout_column="1"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/NoOfBolt"
-                    android:layout_row="3"
+                    android:layout_row="1"
                     android:layout_column="0"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/NoOfBolt"
                     android:id="@+id/BPageTwo_TV_NoOfBolts"
-                    android:layout_row="3"
+                    android:layout_row="1"
                     android:layout_column="1"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/StrengthBolt"
-                    android:layout_row="4"
+                    android:layout_row="6"
                     android:layout_column="0"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/StrengthBolt"
-                    android:layout_row="4"
+                    android:layout_row="6"
                     android:id="@+id/BPageTwo_TV_BoltStrength"
                     android:layout_column="1"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/PitchLength"
-                    android:layout_row="5"
+                    android:layout_row="3"
                     android:layout_column="0"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/PitchLength"
-                    android:layout_row="5"
+                    android:layout_row="3"
                     android:id="@+id/BPageTwo_TV_Pitch"
                     android:layout_column="1"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/EndDistance"
-                    android:layout_row="6"
+                    android:layout_row="4"
                     android:layout_column="0"/>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/EndDistance"
                     android:id="@+id/BPageTwo_TV_EndDistance"
-                    android:layout_row="6"
+                    android:layout_row="4"
                     android:layout_column="1"/>
                 <TextView
                     style="@style/GridLayoutTextView"

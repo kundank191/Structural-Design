@@ -32,4 +32,8 @@ public class Variables {
     public static String unitMM4 = " mm4";
     public static String unitKN = " kN";
 
+    public static String forPageTwoTVValues = "the text view values";
+    public static String forPageTwoETValues = "The edit text ones";
+
+
 }

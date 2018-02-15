@@ -26,16 +26,24 @@ public class Compute {
         return area;
     }
 
+    /**
+     *
+     * @param factoredLoad the load that the bolted connection has to carry
+     * @param boltValue strength of one bolt
+     * @return returns the number of bolts required for the job
+     */
     public static String NumberOfBolts(String factoredLoad,String boltValue){
         String generalNumber = String.valueOf(Math.ceil(getFloatOf(factoredLoad)/getFloatOf(boltValue)));
+        String number = "";
         if(getFloatOf(generalNumber) <= 3){
             return "3";
         }
         if (getFloatOf(generalNumber)%2 == 0){
-            return generalNumber;
+            number =  generalNumber;
         } else {
-            return String.valueOf(getFloatOf(generalNumber) + 1);
+            number = String.valueOf(getFloatOf(generalNumber) + 1);
         }
+        return number.substring(0,number.length()-2);
 
     }
 }
