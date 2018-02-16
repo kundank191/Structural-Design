@@ -22,7 +22,6 @@ import utils.Variables;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
- * Use the {@link BoltPageTwo#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class BoltPageTwo extends Fragment {
@@ -51,23 +50,6 @@ public class BoltPageTwo extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param boltGrade Parameter 1.
-     * @param boltDia Parameter 2.
-     * @return A new instance of fragment BoltPageOne.
-     */
-    public static BoltPageTwo newInstance(String boltGrade, String boltDia) {
-        BoltPageTwo fragment = new BoltPageTwo();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM_GRADE, boltGrade);
-        args.putString(ARG_PARAM_DIA, boltDia);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,15 +62,26 @@ public class BoltPageTwo extends Fragment {
 
     //Setting up the views if value is provided
     private void setupViews(Bundle bundle){
-        TVGrade.setText(bundle.getString(Variables.gradeOfBolt));
-        TVDia.setText(bundle.getString(Variables.diaOfBolt));
-        TVBoltValue.setText(bundle.getString(Variables.valueBolt));
+        TVGrade.setText(bundle.getString(Variables.gradeOfBolt) );
+        TVDia.setText(String.format("%s%s", bundle.getString(Variables.diaOfBolt), Variables.unitMM));
+        TVBoltValue.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.valueBolt)), Variables.unitKN));
         TVNo.setText(bundle.getString(Variables.numberBolt));
-        TVBoltStrength.setText(bundle.getString(Variables.strengthBolt));
-        TVPitch.setText(bundle.getString(Variables.pitch));
-        TVEnd.setText(bundle.getString(Variables.endDistance));
-        TVAnc.setText(bundle.getString(Variables.Anc));
-        TVAgo.setText(bundle.getString(Variables.Ago));
+        TVBoltStrength.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.strengthBolt)), Variables.unitKN));
+        TVPitch.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.pitch)), Variables.unitMM));
+        TVEnd.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.endDistance)), Variables.unitMM));
+        TVAnc.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.Anc)), Variables.unitMM2));
+        TVAgo.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.Ago)), Variables.unitMM2));
+    }
+
+    private void setupDefaultValues(Bundle bundle){
+        ETSectionL.setText(bundle.getString(Variables.section_l));
+        ETSectionH.setText(bundle.getString(Variables.section_h));
+        ETSectionT.setText(bundle.getString(Variables.section_t));
+        ETSectionA.setText(bundle.getString(Variables.section_a));
+        ETSectionB.setText(bundle.getString(Variables.section_b));
+        ETSectionC.setText(bundle.getString(Variables.section_c));
+        ETSectionMI.setText(bundle.getString(Variables.section_MI));
+
     }
 
     @Override
@@ -117,7 +110,10 @@ public class BoltPageTwo extends Fragment {
  //           setupViews(savedInstanceState);
         }
         if(startUpBundle != null){
-            setupViews(startUpBundle);
+            setupViews(startUpBundle.getBundle(Variables.forPageTwoTVValues));
+            if(startUpBundle.containsKey(Variables.forPageTwoETValues)){
+                setupDefaultValues(startUpBundle.getBundle(Variables.forPageTwoETValues));
+            }
         }
         (rootView.findViewById(R.id.BPageTwo_FABNext)).setOnClickListener(new View.OnClickListener() {
             @Override

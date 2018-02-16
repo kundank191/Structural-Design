@@ -5,6 +5,8 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.Snackbar;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Kundan on 14-02-2018.
  */
@@ -41,6 +43,16 @@ public class FunctionKit {
      */
     public static String getStringOf(float floatValue){
         return String.valueOf(floatValue);
+    }
+
+    /**
+     *
+     * @param value a String value holding a Float value
+     * @return the formatter form of float with only two digs after decimal
+     */
+    public static String getTwoDecimalValue(String value){
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        return String.valueOf(decimalFormat.format(getFloatOf(value)));
     }
 
 }
