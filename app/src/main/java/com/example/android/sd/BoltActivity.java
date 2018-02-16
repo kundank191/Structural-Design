@@ -223,7 +223,6 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         if (boltPageOneFragment == null){
             boltPageOneFragment = new BoltPageOne();
         }
-
         boltPageOneFragment.setArguments(getBundleForPageOne());
         mFragmentManager.beginTransaction()
                 .replace(R.id.Activity_container,boltPageOneFragment)
