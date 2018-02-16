@@ -11,7 +11,39 @@
     <string name="enter_bolt_grade">Enter the grade of bolt</string>
     <string name="enter_bolt_dia">Enter diameter of bolt in mm</string>
     <string name="empty_bolt_grade">Please enter bolt grade.</string>
+    <string name="wrong_bolt_grade">Enter a valid grade.</string>
     <string name="empty_bolt_dia">Please give the diameter of the bolt.</string>
+
+    <!-- For Second Page of Bolted Connection -->
+    <string name="BoltGrade">Bolt Grade</string>
+    <string name="BoltDia">Bolt Diameter</string>
+    <string name="BoltValue">Bolt Value</string>
+    <string name="NoOfBolt">No of Bolts</string>
+    <string name="StrengthBolt">Bolt Strength</string>
+    <string name="PitchLength">Pitch Length</string>
+    <string name="EndDistance">End Distance</string>
+    <string name="AreaAnc">Area Anc</string>
+    <string name="AreaAgo">Area Ago</string>
+    <string name="ForTheSection">Select a Section For the Area Ago</string>
+    <string name="enter_section_dimensions">Enter the dimensions of section</string>
+    <string name="Value_l">l</string>
+    <string name="Value_h">h</string>
+    <string name="Value_t">t</string>
+    <string name="Value_a">a</string>
+    <string name="Value_b">b</string>
+    <string name="Value_c">c</string>
+    <string name="EnterLeastMomentOfInertia">Enter Least M.I in mm4</string>
+
     <!-- For Second page of bolted Connection -->
+    <string name="enter_section_length">Enter the length of section</string>
+    <string name="enter_section_breadth">Enter the breadth of section</string>
+    <string name="enter_section_thickness">Enter the thickness of section</string>
+    <string name="enter_section_a">Enter the a value of section for bolted connection</string>
+    <string name="enter_section_b">Enter the b of section for bolted connection</string>
+    <string name="enter_section_c">Enter the c of section for bolted connection</string>
+    <string name="enter_section_MI">Enter the Least area M.I. in mm2 of section</string>
+
+
+
 
 </resources>

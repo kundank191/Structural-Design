@@ -1,75 +1,136 @@
 package com.example.android.sd;
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
-public class BoltActivity extends AppCompatActivity {
+import com.example.android.sd.BoltFragments.BoltPageOne;
+import com.example.android.sd.BoltFragments.BoltPageTwo;
 
+import utils.Variables;
+
+import static utils.FunctionKit.getFloatOf;
+
+public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFABNextClickListener,
+                                                                BoltPageOne.onFABPreviousClickListener,
+                                                                BoltPageTwo.onFABNextClickListener,
+                                                                BoltPageTwo.onFABPreviousClickListener{
+
+
+    private String Service_Load = Variables.defaultValue;
+    private String Factored_Load = Variables.defaultValue;
+    private String Bolt_value = Variables.defaultValue;
+    private String No_Of_Bolts = Variables.defaultValue;
+    private String Grade_Of_Bolts = Variables.defaultValue;
+    private String Dia_Of_Bolts = Variables.defaultValue;
+    private String End_Distance = Variables.defaultValue;
+    private String Pitch_Distance = Variables.defaultValue;
+    private String ConnectionLength_Lc = Variables.defaultValue;
+    private String Bolt_Strength = Variables.defaultValue;
+    private String Area_Anc = Variables.defaultValue;
+    private String Area_Ago = Variables.defaultValue;
+    private String Section_l = Variables.defaultValue;
+    private String Section_h = Variables.defaultValue;
+    private String Section_t = Variables.defaultValue;
+    private String Section_a = Variables.defaultValue;
+    private String Section_b = Variables.defaultValue;
+    private String Section_c = Variables.defaultValue;
+    private String Section_MI = Variables.defaultValue;
+    private String SR = Variables.defaultValue;
+
+    FragmentManager mFragmentManager;
+    private BoltPageOne boltPageOneFragment = null;
+    private BoltPageTwo boltPageTwoFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bolt);
-
-        (findViewById(R.id.BPageOne_FABPrevious)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
+        updateValuesOnLaunch();
+        mFragmentManager = getSupportFragmentManager();
+        if(savedInstanceState == null) {
+            if(boltPageOneFragment == null){
+                boltPageOneFragment = new BoltPageOne();
             }
-        });
-
-        (findViewById(R.id.BPageOne_FABNext)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar snackbar;
-                EditText boltGradeText = (EditText) findViewById(R.id.BPageOne_BoltGrade);
-                EditText boltDiaText = (EditText) findViewById(R.id.BPageOne_BoltDia);
-                if(!TextUtils.isEmpty(boltGradeText.getText())){
-                    if(!TextUtils.isEmpty(boltDiaText.getText())){
-                        //For now create a snackBar
-                        snackbar = getSnackBar((CoordinatorLayout) findViewById(R.id.BPageOne_CoordinateLayout));
-                        snackbar.setText("Yatta");
-                        snackbar.show();
-
-                    } else {
-                        // Message user to insert bolt dia
-                        snackbar = getSnackBar((CoordinatorLayout) findViewById(R.id.BPageOne_CoordinateLayout));
-                        snackbar.setText(R.string.empty_bolt_dia);
-                        snackbar.show();
-                    }
-                } else {
-                    // Message user to insert bolt grade
-                    snackbar = getSnackBar((CoordinatorLayout) findViewById(R.id.BPageOne_CoordinateLayout));
-                    snackbar.setText(R.string.empty_bolt_grade);
-                    snackbar.show();
-                }
-
-            }
-        });
+            mFragmentManager.beginTransaction()
+                    .add(R.id.Activity_container, boltPageOneFragment)
+                    .commit();
+        }
     }
 
+    /**
+     * Stores the values that has been passed through the intent
+     */
+    private void updateValuesOnLaunch(){
+        Service_Load = getIntent().getStringExtra(Variables.serviceLoad);
+        Factored_Load = String.valueOf(getFloatOf(Service_Load)*1.5);
+    }
+    private void updateValuesAfterPageOne(String boltGrade, String boltDia){
+
+        Grade_Of_Bolts = boltGrade;
+        Dia_Of_Bolts = boltDia;
+        Pitch_Distance = String.valueOf(getFloatOf(boltDia)*1.5);
+        End_Distance = String.valueOf(getFloatOf(boltDia)*2.5);
+
+    }
     private void setupPageTwo(){
-        setContentView(R.layout.activity_bolt);
+
     }
 
-    private Snackbar getSnackBar(CoordinatorLayout mCoordinateLayout){
-        Snackbar snackbar = Snackbar.make(mCoordinateLayout, R.string.enter_service_load, Snackbar.LENGTH_SHORT);
-        snackbar.getView().setBackgroundColor(Color.WHITE);
-        TextView textView = (snackbar.getView()).findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(Color.argb(255, 3, 169, 244));
-        return snackbar;
+    /**
+     *
+     * @return a bundle for all the values required for page two
+     */
+    private Bundle getBundleForPageTwo(){
+        Bundle bundle = new Bundle();
+        bundle.putString(Variables.gradeOfBolt,Grade_Of_Bolts);
+        bundle.putString(Variables.diaOfBolt,Dia_Of_Bolts);
+        bundle.putString(Variables.valueBolt,Bolt_value);
+        bundle.putString(Variables.numberBolt,No_Of_Bolts);
+        bundle.putString(Variables.strengthBolt,Bolt_Strength);
+        bundle.putString(Variables.pitch,Pitch_Distance);
+        bundle.putString(Variables.endDistance,End_Distance);
+        bundle.putString(Variables.Anc,Area_Anc);
+        bundle.putString(Variables.Ago,Area_Ago);
+        return bundle;
     }
+
 
     @Override
     public void onBackPressed() {
         Log.i(getLocalClassName(),"Back Pressed");
+    }
+
+    @Override
+    public void onPageOneNextClicked(String boltGrade, String boltDia) {
+        updateValuesAfterPageOne(boltGrade,boltDia);
+//        if(boltPageTwoFragment == null) {
+            boltPageTwoFragment = new BoltPageTwo();
+            boltPageTwoFragment.setArguments(getBundleForPageTwo());
+ //       }
+        mFragmentManager.beginTransaction()
+                .replace(R.id.Activity_container,boltPageTwoFragment)
+                .commit();
+    }
+    @Override
+    public void onPageOnePreviousClicked() {
+        Log.i(getLocalClassName(),"Finishing ");
+        finish();
+    }
+
+    @Override
+    public void onPageTwoNextClicked(Bundle dataBundle) {
+
+    }
+
+    @Override
+    public void onPageTwoPreviousClicked() {
+//        if (boltPageOneFragment == null){
+            boltPageOneFragment = new BoltPageOne();
+//        }
+        mFragmentManager.beginTransaction()
+                .replace(R.id.Activity_container,boltPageOneFragment)
+                .commit();
     }
 }
