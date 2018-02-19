@@ -22,8 +22,7 @@ public class Compute {
     }
 
     public static String AreaAn(String FactoredLoad_Pu_Tdn,String fu){
-        String area = String.valueOf(getFloatOf(FactoredLoad_Pu_Tdn)*1.25*1000/(0.8*getFloatOf(fu)));
-        return area;
+        return String.valueOf(getFloatOf(FactoredLoad_Pu_Tdn)*1.25*1000/(0.8*getFloatOf(fu)));
     }
 
     /**
@@ -47,6 +46,11 @@ public class Compute {
 
     }
 
+    /**
+     *
+     * @param boltDia
+     * @return
+     */
     public static String getClearance(String boltDia){
         if(getFloatOf(boltDia) < 16)
             return "1";
@@ -55,14 +59,38 @@ public class Compute {
         return "3";
     }
 
+    /**
+     *
+     * @param numberOfBolts
+     * @param numberOfRows
+     * @param pitch
+     * @return
+     */
     public static String getLengthOfConnection(String numberOfBolts, String numberOfRows, String pitch){
         return String.valueOf(getFloatOf(pitch)*(getFloatOf(numberOfBolts)/getFloatOf(numberOfRows) - 1));
     }
 
+    /**
+     *
+     * @param section_l
+     * @param section_a
+     * @param section_t
+     * @return
+     */
     public static String getLengthBS(String section_l, String section_a, String section_t){
         return String.valueOf(getFloatOf(section_l) + getFloatOf(section_a) - getFloatOf(section_t));
     }
 
+    /**
+     *
+     * @param section_l
+     * @param section_t
+     * @param length_BS
+     * @param length_LC
+     * @param Strength_fy
+     * @param Strength_fu
+     * @return
+     */
     public static String getValueB(String section_l, String section_t, String length_BS, String length_LC
                                             ,String Strength_fy, String Strength_fu){
         return String.valueOf(1.4 - .076
@@ -71,26 +99,64 @@ public class Compute {
                                         *(getFloatOf(length_BS)/getFloatOf(length_LC)));
     }
 
+    /**
+     *
+     * @param section_l
+     * @param section_t
+     * @param boltDia
+     * @param clearance
+     * @return
+     */
     public static String getAreaAnc(String section_l, String section_t, String boltDia, String clearance){
         return String.valueOf((getFloatOf(section_l) - getFloatOf(section_t)/2)*getFloatOf(section_l)
                                         - (getFloatOf(boltDia) + getFloatOf(clearance))*getFloatOf(section_l)*2);
     }
 
+    /**
+     *
+     * @param section_h
+     * @param section_t
+     * @return
+     */
     public static String getAreaAgo(String section_h, String section_t){
         return String.valueOf((getFloatOf(section_h) - getFloatOf(section_t))*getFloatOf(section_t));
     }
 
+    /**
+     *
+     * @param Strength_fy
+     * @param Area_Ag
+     * @param factor_of_safety_Ymo
+     * @return
+     */
     public static String getStrengthTdg(String Strength_fy,String Area_Ag, String factor_of_safety_Ymo){
-        return String.valueOf(getFloatOf(Strength_fy) * getFloatOf(Area_Ag) / getFloatOf(factor_of_safety_Ymo));
+        return String.valueOf((getFloatOf(Strength_fy) * getFloatOf(Area_Ag) / getFloatOf(factor_of_safety_Ymo))/1000);
     }
 
+    /**
+     *
+     * @param Area_Anc
+     * @param Strength_fu
+     * @param factor_of_Safety_Ym1
+     * @param value_B
+     * @param strength_fy
+     * @param Area_Ago
+     * @param factor_of_safety_Ymo
+     * @return
+     */
     public static String getStrengthTdn(String Area_Anc, String Strength_fu, String factor_of_Safety_Ym1
                                             ,String value_B, String strength_fy, String Area_Ago
                                             , String factor_of_safety_Ymo){
-        return String.valueOf(0.9*getFloatOf(Area_Anc)*getFloatOf(Strength_fu)/getFloatOf(factor_of_Safety_Ym1)
-                                + getFloatOf(value_B)*getFloatOf(strength_fy)*getFloatOf(Area_Ago)/getFloatOf(factor_of_safety_Ymo));
+        return String.valueOf((0.9*getFloatOf(Area_Anc)*getFloatOf(Strength_fu)/getFloatOf(factor_of_Safety_Ym1)
+                                + getFloatOf(value_B)*getFloatOf(strength_fy)*getFloatOf(Area_Ago)/getFloatOf(factor_of_safety_Ymo))/1000);
     }
 
+    /**
+     *
+     * @param NoOfBolts
+     * @param l
+     * @return
+     */
     public static String getNoOfRows(String NoOfBolts, String l){
         if(getFloatOf(NoOfBolts) <= 3){
             return "1";
@@ -102,6 +168,13 @@ public class Compute {
         return "2";
     }
 
+    /**
+     *
+     * @param section_MI
+     * @param effectiveLength
+     * @param Ag
+     * @return
+     */
     public static String getSlendernessRatio(String section_MI, String effectiveLength, String Ag){
         return String.valueOf(getFloatOf(effectiveLength)/Math.sqrt(getFloatOf(section_MI)/getFloatOf(Ag)));
     }

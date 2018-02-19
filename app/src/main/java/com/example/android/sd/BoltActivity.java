@@ -59,8 +59,8 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
             , value_B
             , Strength_Tdg
             , Strength_Tdn
-            , Strength_Tdb = Variables.defaultValue
-            , Strength_Td = Variables.defaultValue
+            , Strength_Tdb = "124.56"
+            , Strength_Td = "144.12"
             , Area_Avg
             , Area_Atg
             , Area_Atn;
@@ -112,7 +112,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         End_Distance = String.valueOf(getFloatOf(boltDia)*1.5);
         Ultimate_Load_fu = String.valueOf(getFloatOf(Grade_Of_Bolts.substring(0,1))*100);
         Bolt_value = Compute.BoltValue(Dia_Of_Bolts,End_Distance,Pitch_Distance,Factor_Of_Safety_Ymb,
-                                        Number_Of_Shear_Planes_n,Ultimate_Load_fu,"400",Thickness_thinner_plate_T);
+                                        Number_Of_Shear_Planes_n,Ultimate_Load_fu,Ultimate_Load_fu,Thickness_thinner_plate_T);
         Area_An = Compute.AreaAn(Factored_Load,Ultimate_Load_fu);
         Area_Ag = String.valueOf(getFloatOf(Area_An)*1.2);
         No_Of_Bolts = Compute.NumberOfBolts(Factored_Load,Bolt_value);

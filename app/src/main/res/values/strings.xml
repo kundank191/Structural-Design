@@ -52,16 +52,19 @@
     <!-- For Third Page of Bolted Connection -->
     <string name="Tdn">Tdn</string>
     <string name="Tdg">Tdg</string>
-    <string name="Tdb">Tbs</string>
+    <string name="Tdb">Tdb</string>
     <string name="Td">Td</string>
     <string name="B">B(Beta)</string>
-    <string name="Factored_Load">Load</string>
+    <string name="SlendernessRatio">Slenderness Ratio</string>
+    <string name="numberOfRows">Number Of Rows</string>
+    <string name="Factored_Load">Factored Load</string>
     <string name="FailureTd">Td is smaller than factored load , Review Section</string>
     <string name="FailureB">B(Beta) must be greater than 0.7 and less than 1, Review Section</string>
     <string name="FailureSR">Slenderness Ration must be smaller than 400 , Review Section</string>
 
     <!-- For Fourth Page -->
     <string name="Final_Message">The Design</string>
+    <string name="Section">The selected Section is :</string>
 
 
 
