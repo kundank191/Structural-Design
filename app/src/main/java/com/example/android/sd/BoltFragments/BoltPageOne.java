@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -24,7 +23,6 @@ import utils.Variables;
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
  * to handle interaction events.
- * Use the {@link BoltPageOne#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class BoltPageOne extends Fragment {
@@ -37,33 +35,18 @@ public class BoltPageOne extends Fragment {
 
     private String mGradeOfBolt;
     private String mDiaOfBolt;
+    private String mMinimumThickness;
     private Bundle dataBundle = null;
 
     private EditText mBoltGradeE;
     private EditText mBoltDia;
+    private EditText mMinimumThicknessET;
     private CoordinatorLayout mCoordinatorLayout;
 
     //private OnFragmentInteractionListener mListener;
 
     public BoltPageOne() {
         // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param boltGrade Parameter 1.
-     * @param boltDia Parameter 2.
-     * @return A new instance of fragment BoltPageOne.
-     */
-    public static BoltPageOne newInstance(String boltGrade, String boltDia) {
-        BoltPageOne fragment = new BoltPageOne();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM_GRADE, boltGrade);
-        args.putString(ARG_PARAM_DIA, boltDia);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
@@ -75,9 +58,10 @@ public class BoltPageOne extends Fragment {
     }
 
     //Setting up the views if value is provided
-    private void setupViews(String boltGrade, String boltDia){
+    private void setupViews(String boltGrade, String boltDia, String minimumThickness){
         mBoltGradeE.setText(boltGrade);
         mBoltDia.setText(boltDia);
+        mMinimumThicknessET.setText(minimumThickness);
     }
 
     @Override
@@ -87,6 +71,7 @@ public class BoltPageOne extends Fragment {
 
         mBoltGradeE = (EditText) rootView.findViewById(R.id.BPageOne_BoltGrade);
         mBoltDia = (EditText) rootView.findViewById(R.id.BPageOne_BoltDia);
+        mMinimumThicknessET = (EditText) rootView.findViewById(R.id.BPageOne_MinimumThickness);
 //        if(savedInstanceState != null){
 //            mGradeOfBolt = savedInstanceState.getString(ARG_PARAM_GRADE);
 //            mDiaOfBolt = savedInstanceState.getString(ARG_PARAM_DIA);
@@ -95,7 +80,8 @@ public class BoltPageOne extends Fragment {
         if(dataBundle != null){
             mGradeOfBolt = dataBundle.getString(Variables.gradeOfBolt);
             mDiaOfBolt = dataBundle.getString(Variables.diaOfBolt);
-            setupViews(mGradeOfBolt, mDiaOfBolt);
+            mMinimumThickness = dataBundle.getString(Variables.minimumThickness);
+            setupViews(mGradeOfBolt, mDiaOfBolt, mMinimumThickness);
         }
 
         mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.BPageOne_CoordinateLayout);
@@ -104,10 +90,15 @@ public class BoltPageOne extends Fragment {
         mNext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(getBoltGrade() != null){
-                    if(Float.parseFloat(getBoltGrade()) <= 10) {
-                        if (getBoltDia() != null) {
-                            mListener.onPageOneNextClicked(getBoltGrade(), getBoltDia());
+                if(dataFrom(mBoltGradeE) != null){
+                    if(Float.parseFloat(dataFrom(mBoltGradeE)) <= 10) {
+                        if (dataFrom(mBoltDia) != null) {
+                            if(dataFrom(mMinimumThicknessET) != null) {
+                                mListener.onPageOneNextClicked(dataFrom(mBoltGradeE), dataFrom(mBoltDia), dataFrom(mMinimumThicknessET));
+                            } else {
+                                Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.enter_minimum_plate_thickness);
+                                snackbar.show();
+                            }
                         } else {
                             Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.enter_bolt_dia);
                             snackbar.show();
@@ -158,26 +149,21 @@ public class BoltPageOne extends Fragment {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        if(getBoltGrade() != null && getBoltDia() != null) {
-            outState.putString(ARG_PARAM_GRADE, getBoltGrade());
-            outState.putString(ARG_PARAM_DIA, getBoltDia());
+        if(dataFrom(mBoltGradeE) != null && dataFrom(mBoltDia) != null) {
+            outState.putString(ARG_PARAM_GRADE, dataFrom(mBoltGradeE));
+            outState.putString(ARG_PARAM_DIA, dataFrom(mBoltDia));
         }
         super.onSaveInstanceState(outState);
     }
 
-    @Nullable
-    private String getBoltGrade(){
-        if(!TextUtils.isEmpty(mBoltGradeE.getText())){
-            return mBoltGradeE.getText().toString();
-        } else {
-            return null;
-        }
-    }
-
-    @Nullable
-    private String getBoltDia(){
-        if(!TextUtils.isEmpty(mBoltDia.getText())){
-            return mBoltDia.getText().toString();
+    /**
+     *
+     * @param editText Takes in edit text
+     * @return null if edit text is empty else the value
+     */
+    private String dataFrom(EditText editText){
+        if(!TextUtils.isEmpty(editText.getText())){
+            return editText.getText().toString();
         } else {
             return null;
         }
@@ -192,7 +178,7 @@ public class BoltPageOne extends Fragment {
     }
 
     public interface onFABNextClickListener{
-        void onPageOneNextClicked(String boltGrade, String boltDia);
+        void onPageOneNextClicked(String boltGrade, String boltDia, String minimumThickness_T);
     }
 
     public interface onFABPreviousClickListener{

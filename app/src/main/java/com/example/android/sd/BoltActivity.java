@@ -51,6 +51,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
     private String Ultimate_Load_fu = "400";
     private String Number_Of_Shear_Planes_n = "1";
     private String Factor_Of_Safety_Ymb = "1.25";
+    private String Thickness_thinner_plate_T = "10";
 
     FragmentManager mFragmentManager;
     private BoltPageOne boltPageOneFragment = null;
@@ -90,10 +91,11 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
      * @param boltGrade the value of boltGrade passed from page two
      * @param boltDia the value of boltDia passed from page two
      */
-    private void updateValuesAfterPageOne(String boltGrade, String boltDia){
+    private void updateValuesAfterPageOne(String boltGrade, String boltDia, String minimum_T){
 
         Grade_Of_Bolts = boltGrade;
         Dia_Of_Bolts = boltDia;
+        Thickness_thinner_plate_T = minimum_T;
         Pitch_Distance = String.valueOf(getFloatOf(boltDia)*2.5);
         End_Distance = String.valueOf(getFloatOf(boltDia)*1.5);
         Ultimate_Load_fu = String.valueOf(getFloatOf(Grade_Of_Bolts.substring(0,1))*100);
@@ -129,6 +131,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         Bundle bundle = new Bundle();
         bundle.putString(Variables.gradeOfBolt,Grade_Of_Bolts);
         bundle.putString(Variables.diaOfBolt,Dia_Of_Bolts);
+        bundle.putString(Variables.minimumThickness, Thickness_thinner_plate_T);
         return bundle;
     }
 
@@ -192,8 +195,8 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
     }
 
     @Override
-    public void onPageOneNextClicked(String boltGrade, String boltDia) {
-        updateValuesAfterPageOne(boltGrade,boltDia);
+    public void onPageOneNextClicked(String boltGrade, String boltDia, String minimumThickness_T) {
+        updateValuesAfterPageOne(boltGrade,boltDia,minimumThickness_T);
         if(boltPageTwoFragment == null) {
             boltPageTwoFragment = new BoltPageTwo();
         }

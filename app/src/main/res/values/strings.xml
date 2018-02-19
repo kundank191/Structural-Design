@@ -13,6 +13,8 @@
     <string name="empty_bolt_grade">Please enter bolt grade.</string>
     <string name="wrong_bolt_grade">Enter a valid grade.</string>
     <string name="empty_bolt_dia">Please give the diameter of the bolt.</string>
+    <string name="enter_minimum_plate_thickness">Enter the minimum plate thickness</string>
+    <string name="empty_thickness">Please enter minimum plate thickness</string>
 
     <!-- For Second Page of Bolted Connection -->
     <string name="BoltGrade">Bolt Grade</string>
@@ -21,7 +23,11 @@
     <string name="NoOfBolt">No of Bolts</string>
     <string name="StrengthBolt">Bolt Strength</string>
     <string name="PitchLength">Pitch Length</string>
+    <string name="PitchMessageLess">Pitch Distance can\'t be less than 2.5 times the diameter of bolt </string>
+    <string name="PitchMessageMore">Can\'t decrease pitch anymore</string>
     <string name="EndDistance">End Distance</string>
+    <string name="EndMessageLess">End Distance can\'t be less than 1.5 times the diameter of bolt </string>
+    <string name="EndMessageMore">Can\'t decrease End distance anymore</string>
     <string name="AreaAn">Area An</string>
     <string name="AreaAg">Area Ag</string>
     <string name="AreaAnc">Area Anc</string>

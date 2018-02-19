@@ -14,12 +14,14 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:paddingTop="16dp"
+            android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <GridLayout
                 android:rowCount="9"
                 android:columnCount="2"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <TextView

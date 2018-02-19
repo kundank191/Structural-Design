@@ -46,4 +46,43 @@ public class Compute {
         return number.substring(0,number.length()-2);
 
     }
+
+    public static String getClearance(String boltDia){
+        return "3";
+    }
+
+    /**
+     *
+     * @param pitch current pitch value
+     * @param boltDia the diameter of the bolt selected
+     * @return if value of pitch can be changed then it will return true
+     */
+    public static boolean pitchCanChange(String pitch, String T, String boltDia, boolean plusClicked){
+        if(plusClicked){
+            pitch = String.valueOf(getFloatOf(pitch) + 5);
+            return getFloatOf(pitch) <= (Math.min(getFloatOf("200"),getFloatOf(T) * 16));
+        } else {
+            pitch = String.valueOf(getFloatOf(pitch) - 5);
+            return getFloatOf(pitch) >= (getFloatOf(boltDia) * 2.5);
+        }
+
+    }
+
+    /**
+     *
+     * @param endDistance get current endDistance Value
+     * @param boltDia get the bolt diameter
+     * @param plusClicked to check if plus or minus button was clicked
+     * @return true if the change in the end distance is possible
+     */
+    public static boolean endDistanceCanChange(String endDistance,String T, String boltDia, boolean plusClicked){
+        if(plusClicked){
+            endDistance = String.valueOf(getFloatOf(endDistance) + 5);
+            return getFloatOf(endDistance) <= (getFloatOf(T)*4 + 10);
+        } else {
+            endDistance = String.valueOf(getFloatOf(endDistance) - 5);
+            return getFloatOf(endDistance) >= (getFloatOf(boltDia) * 1.5);
+        }
+
+    }
 }

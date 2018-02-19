@@ -14,6 +14,7 @@ public class Variables {
     public static String valueBolt = "Bolt Gravvde2";
     public static String numberBolt = "Bolt Grabde3";
     public static String strengthBolt = "Bolt Gnbrade4";
+    public static String minimumThickness = "minimum Thickness";
     public static String pitch = "Bolt Grsdfade5";
     public static String endDistance = "Bolt ggGrade6";
     public static String Anc = "Bolt dGrade7";
