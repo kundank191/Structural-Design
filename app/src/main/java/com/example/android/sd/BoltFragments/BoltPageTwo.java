@@ -15,8 +15,11 @@ import android.widget.TextView;
 
 import com.example.android.sd.R;
 
+import utils.Compute;
 import utils.FunctionKit;
 import utils.Variables;
+
+import static utils.FunctionKit.getFloatOf;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +46,11 @@ public class BoltPageTwo extends Fragment {
     private EditText ETSectionMI;
     private CoordinatorLayout mCoordinatorLayout;
     private TextView TVGrade, TVDia, TVBoltValue, TVNo, TVBoltStrength, TVPitch, TVEnd, TVAnc, TVAgo;
+    private String mDefaultPitch, mDefaultEndDistance;
+    private String Thickness_thinner_plate_T, mBoltDia;
+    private String Ultimate_Load_fu = "400";
+    private String Number_Of_Shear_Planes_n = "1";
+    private String Factor_Of_Safety_Ymb = "1.25", FactoredLoad;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -62,6 +70,14 @@ public class BoltPageTwo extends Fragment {
 
     //Setting up the views if value is provided
     private void setupViews(Bundle bundle){
+        mDefaultPitch = bundle.getString(Variables.pitch);
+        mDefaultEndDistance = bundle.getString(Variables.endDistance);
+        Thickness_thinner_plate_T = bundle.getString(Variables.minimumThickness);
+        Ultimate_Load_fu = bundle.getString(Variables.ultimateLoad_fu);
+        Number_Of_Shear_Planes_n = bundle.getString(Variables.no_of_shear_Planes);
+        Factor_Of_Safety_Ymb = bundle.getString(Variables.factorOfSafety_Ymb);
+        FactoredLoad = bundle.getString(Variables.factoredLoad);
+        mBoltDia = bundle.getString(Variables.diaOfBolt);
         TVGrade.setText(bundle.getString(Variables.gradeOfBolt) );
         TVDia.setText(String.format("%s%s", bundle.getString(Variables.diaOfBolt), Variables.unitMM));
         TVBoltValue.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.valueBolt)), Variables.unitKN));
@@ -115,6 +131,85 @@ public class BoltPageTwo extends Fragment {
                 setupDefaultValues(startUpBundle.getBundle(Variables.forPageTwoETValues));
             }
         }
+        (rootView.findViewById(R.id.BPageOne_addToPitch)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Compute.pitchCanChange(mDefaultPitch,Thickness_thinner_plate_T,mBoltDia,true)){
+                    mDefaultPitch = String.valueOf(getFloatOf(mDefaultPitch) + 1);
+                    TVPitch.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(mDefaultPitch), Variables.unitMM));
+                    String Bolt_value = Compute.BoltValue(mBoltDia,mDefaultEndDistance,mDefaultPitch,Factor_Of_Safety_Ymb,
+                            Number_Of_Shear_Planes_n,Ultimate_Load_fu,"400","10");
+                    TVBoltValue.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(Bolt_value), Variables.unitKN));
+                    String No_Of_Bolts = Compute.NumberOfBolts(FactoredLoad,Bolt_value);
+                    TVNo.setText(No_Of_Bolts);
+                    String Bolt_Strength = String.valueOf(getFloatOf(No_Of_Bolts)*getFloatOf(Bolt_value));
+                    TVBoltStrength.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(Bolt_Strength), Variables.unitKN));
+                } else {
+                    Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout, R.string.PitchMessageMore);
+                    snackbar.show();
+                }
+            }
+        });
+        (rootView.findViewById(R.id.BPageOne_minusFromPitch)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Compute.pitchCanChange(mDefaultPitch,Thickness_thinner_plate_T,mBoltDia,false)){
+                    mDefaultPitch = String.valueOf(getFloatOf(mDefaultPitch) - 1);
+                    TVPitch.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(mDefaultPitch), Variables.unitMM));
+                    String Bolt_value = Compute.BoltValue(mBoltDia,mDefaultEndDistance,mDefaultPitch,Factor_Of_Safety_Ymb,
+                            Number_Of_Shear_Planes_n,Ultimate_Load_fu,"400","10");
+                    TVBoltValue.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(Bolt_value), Variables.unitKN));
+                    String No_Of_Bolts = Compute.NumberOfBolts(FactoredLoad,Bolt_value);
+                    TVNo.setText(No_Of_Bolts);
+                    String Bolt_Strength = String.valueOf(getFloatOf(No_Of_Bolts)*getFloatOf(Bolt_value));
+                    TVBoltStrength.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(Bolt_Strength), Variables.unitKN));
+
+                } else {
+                    Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout, R.string.PitchMessageLess);
+                    snackbar.show();
+                }
+            }
+        });
+        (rootView.findViewById(R.id.BPageOne_addToEndDistance)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Compute.endDistanceCanChange(mDefaultEndDistance,Thickness_thinner_plate_T,mBoltDia,true)){
+                    mDefaultEndDistance = String.valueOf(getFloatOf(mDefaultEndDistance) + 1);
+                    TVEnd.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(mDefaultEndDistance), Variables.unitMM));
+                    String Bolt_value = Compute.BoltValue(mBoltDia,mDefaultEndDistance,mDefaultPitch,Factor_Of_Safety_Ymb,
+                            Number_Of_Shear_Planes_n,Ultimate_Load_fu,"400","10");
+                    TVBoltValue.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(Bolt_value), Variables.unitKN));
+                    String No_Of_Bolts = Compute.NumberOfBolts(FactoredLoad,Bolt_value);
+                    TVNo.setText(No_Of_Bolts);
+                    String Bolt_Strength = String.valueOf(getFloatOf(No_Of_Bolts)*getFloatOf(Bolt_value));
+                    TVBoltStrength.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(Bolt_Strength), Variables.unitKN));
+
+                } else {
+                    Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout, R.string.EndMessageMore);
+                    snackbar.show();
+                }
+            }
+        });
+        (rootView.findViewById(R.id.BPageOne_minusFromEndDistance)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(Compute.endDistanceCanChange(mDefaultEndDistance,Thickness_thinner_plate_T,mBoltDia,false)){
+                    mDefaultEndDistance = String.valueOf(getFloatOf(mDefaultEndDistance) - 1);
+                    TVEnd.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(mDefaultEndDistance), Variables.unitMM));
+                    String Bolt_value = Compute.BoltValue(mBoltDia,mDefaultEndDistance,mDefaultPitch,Factor_Of_Safety_Ymb,
+                            Number_Of_Shear_Planes_n,Ultimate_Load_fu,"400","10");
+                    TVBoltValue.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(Bolt_value), Variables.unitKN));
+                    String No_Of_Bolts = Compute.NumberOfBolts(FactoredLoad,Bolt_value);
+                    TVNo.setText(No_Of_Bolts);
+                    String Bolt_Strength = String.valueOf(getFloatOf(No_Of_Bolts)*getFloatOf(Bolt_value));
+                    TVBoltStrength.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(Bolt_Strength), Variables.unitKN));
+
+                } else {
+                    Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout, R.string.EndMessageLess);
+                    snackbar.show();
+                }
+            }
+        });
         (rootView.findViewById(R.id.BPageTwo_FABNext)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,6 +228,8 @@ public class BoltPageTwo extends Fragment {
                                             bundle.putString(Variables.section_b,dataFrom(ETSectionB));
                                             bundle.putString(Variables.section_c,dataFrom(ETSectionC));
                                             bundle.putString(Variables.section_MI,dataFrom(ETSectionMI));
+                                            bundle.putString(Variables.pitch,mDefaultPitch);
+                                            bundle.putString(Variables.endDistance,mDefaultEndDistance);
                                             mListener.onPageTwoNextClicked(bundle);
                                         } else {
                                             Snackbar snackbar = FunctionKit.getSnackBar(mCoordinatorLayout,R.string.enter_section_MI);

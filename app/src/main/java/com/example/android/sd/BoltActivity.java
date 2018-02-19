@@ -46,12 +46,24 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
     private String Section_a = Variables.defaultValue;
     private String Section_b = Variables.defaultValue;
     private String Section_c = Variables.defaultValue;
-    private String Section_MI = Variables.defaultValue;
-    private String SR = Variables.defaultValue;
-    private String Ultimate_Load_fu = "400";
+    private String Section_MI = Variables.defaultValue, Effective_Length = "200", SlendernessRatio = "20";
+    private String Ultimate_Load_fu = "400", Yeild_Strength_fy = "250";
     private String Number_Of_Shear_Planes_n = "1";
-    private String Factor_Of_Safety_Ymb = "1.25";
+    private String Factor_Of_Safety_Ymb = "1.25", Factor_Of_Safety_Ymo = "1.1";
     private String Thickness_thinner_plate_T = "10";
+
+    private String Clearance = "2"
+            , Length_Connection_LC
+            , numberOfRows = "2"
+            , length_BS
+            , value_B
+            , Strength_Tdg
+            , Strength_Tdn
+            , Strength_Tdb = Variables.defaultValue
+            , Strength_Td = Variables.defaultValue
+            , Area_Avg
+            , Area_Atg
+            , Area_Atn;
 
     FragmentManager mFragmentManager;
     private BoltPageOne boltPageOneFragment = null;
@@ -100,7 +112,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         End_Distance = String.valueOf(getFloatOf(boltDia)*1.5);
         Ultimate_Load_fu = String.valueOf(getFloatOf(Grade_Of_Bolts.substring(0,1))*100);
         Bolt_value = Compute.BoltValue(Dia_Of_Bolts,End_Distance,Pitch_Distance,Factor_Of_Safety_Ymb,
-                                        Number_Of_Shear_Planes_n,Ultimate_Load_fu,"400","10");
+                                        Number_Of_Shear_Planes_n,Ultimate_Load_fu,"400",Thickness_thinner_plate_T);
         Area_An = Compute.AreaAn(Factored_Load,Ultimate_Load_fu);
         Area_Ag = String.valueOf(getFloatOf(Area_An)*1.2);
         No_Of_Bolts = Compute.NumberOfBolts(Factored_Load,Bolt_value);
@@ -121,6 +133,26 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         Section_b = dataBundle.getString(Variables.section_b);
         Section_c = dataBundle.getString(Variables.section_c);
         Section_MI = dataBundle.getString(Variables.section_MI);
+
+        Pitch_Distance = dataBundle.getString(Variables.pitch);
+        End_Distance = dataBundle.getString(Variables.endDistance);
+        Bolt_value = Compute.BoltValue(Dia_Of_Bolts,End_Distance,Pitch_Distance,Factor_Of_Safety_Ymb,
+                Number_Of_Shear_Planes_n,Ultimate_Load_fu,"400","10");
+        No_Of_Bolts = Compute.NumberOfBolts(Factored_Load,Bolt_value);
+        Bolt_Strength = String.valueOf(getFloatOf(No_Of_Bolts)*getFloatOf(Bolt_value));
+
+        Clearance = Compute.getClearance(Dia_Of_Bolts);
+        numberOfRows = Compute.getNoOfRows(No_Of_Bolts,Section_l);
+        Length_Connection_LC = Compute.getLengthOfConnection(No_Of_Bolts,numberOfRows,Pitch_Distance);
+        length_BS = Compute.getLengthBS(Section_l,Section_a,Section_t);
+        value_B = Compute.getValueB(Section_l,Section_t,length_BS,Length_Connection_LC,Yeild_Strength_fy,Ultimate_Load_fu);
+        Area_Anc = Compute.getAreaAnc(Section_l,Section_t,Dia_Of_Bolts,Clearance);
+        Area_Ago = Compute.getAreaAgo(Section_h,Section_t);
+        Strength_Tdg = Compute.getStrengthTdg(Yeild_Strength_fy,Area_Ag,Factor_Of_Safety_Ymo);
+        Strength_Tdn = Compute.getStrengthTdn(Area_Anc,Ultimate_Load_fu,Factor_Of_Safety_Ymb,value_B
+                                                ,Yeild_Strength_fy,Area_Ago,Factor_Of_Safety_Ymo);
+        SlendernessRatio = Compute.getSlendernessRatio(Section_MI,Effective_Length,Area_Ag);
+
     }
 
     /**
@@ -151,6 +183,11 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         bundle.putString(Variables.endDistance,End_Distance);
         bundle.putString(Variables.Anc, Area_An);
         bundle.putString(Variables.Ago, Area_Ag);
+        bundle.putString(Variables.minimumThickness, Thickness_thinner_plate_T);
+        bundle.putString(Variables.factoredLoad,Factored_Load);
+        bundle.putString(Variables.no_of_shear_Planes,Number_Of_Shear_Planes_n);
+        bundle.putString(Variables.factorOfSafety_Ymb,Factor_Of_Safety_Ymb);
+        bundle.putString(Variables.ultimateLoad_fu,Ultimate_Load_fu);
 
         completeBundle.putBundle(Variables.forPageTwoTVValues,bundle);
 
@@ -176,6 +213,16 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
      */
     private Bundle getBundleForPageThree(){
         Bundle bundle = new Bundle();
+        bundle.putString(Variables.factoredLoad,Factored_Load);
+        bundle.putString(Variables.section_l,Section_l);
+        bundle.putString(Variables.section_h,Section_h);
+        bundle.putString(Variables.section_t,Section_t);
+        bundle.putString(Variables.SlendernessRatio,SlendernessRatio);
+        bundle.putString(Variables.Strength_Tdg,Strength_Tdg);
+        bundle.putString(Variables.Strength_Tdn,Strength_Tdn);
+        bundle.putString(Variables.Strength_Tdb,Strength_Tdb);
+        bundle.putString(Variables.Strength_Td,Strength_Td);
+        bundle.putString(Variables.value_B,value_B);
         return bundle;
     }
 
@@ -185,6 +232,17 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
      */
     private Bundle getBundleForPageFour(){
         Bundle bundle = new Bundle();
+        bundle.putString(Variables.factoredLoad,Factored_Load);
+        bundle.putString(Variables.gradeOfBolt,Grade_Of_Bolts);
+        bundle.putString(Variables.numberBolt,No_Of_Bolts);
+        bundle.putString(Variables.numOfRows,numberOfRows);
+        bundle.putString(Variables.strengthBolt,Bolt_Strength);
+        bundle.putString(Variables.section_l,Section_l);
+        bundle.putString(Variables.section_h,Section_h);
+        bundle.putString(Variables.section_t,Section_t);
+        bundle.putString(Variables.section_a,Section_a);
+        bundle.putString(Variables.section_b,Section_b);
+        bundle.putString(Variables.Strength_Td,Strength_Td);
         return bundle;
     }
 

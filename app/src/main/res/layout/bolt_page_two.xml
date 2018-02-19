@@ -11,9 +11,11 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_marginBottom="88dp"
+        android:layout_gravity="center"
         android:layout_height="match_parent">
         <LinearLayout
             android:paddingTop="16dp"
+            android:gravity="center"
             android:layout_gravity="center_horizontal"
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -21,6 +23,8 @@
             <GridLayout
                 android:rowCount="9"
                 android:columnCount="2"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -85,23 +89,81 @@
                     android:text="@string/PitchLength"
                     android:layout_row="3"
                     android:layout_column="0"/>
-                <TextView
-                    style="@style/GridLayoutTextView"
-                    android:text="@string/PitchLength"
-                    android:layout_row="3"
-                    android:id="@+id/BPageTwo_TV_Pitch"
-                    android:layout_column="1"/>
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_column="1"
+                    android:layout_margin="2dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_columnWeight="1"
+                    android:layout_row="3">
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="30dp"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:id="@+id/BPageOne_minusFromPitch"
+                        android:src="@drawable/ic_remove_black_24dp"
+                        app:elevation="2dp"
+                        android:layout_height="30dp" />
+                    <TextView
+                        style="@style/GridLayoutTextView"
+                        android:layout_weight="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="@string/PitchLength"
+                        android:id="@+id/BPageTwo_TV_Pitch"
+                        />
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="30dp"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:id="@+id/BPageOne_addToPitch"
+                        android:src="@drawable/ic_add_black_24dp"
+                        android:layout_height="30dp" />
+
+                </LinearLayout>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/EndDistance"
                     android:layout_row="4"
                     android:layout_column="0"/>
-                <TextView
-                    style="@style/GridLayoutTextView"
-                    android:text="@string/EndDistance"
-                    android:id="@+id/BPageTwo_TV_EndDistance"
-                    android:layout_row="4"
-                    android:layout_column="1"/>
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_columnWeight="1"
+                    android:layout_row="4">
+                    <android.support.design.widget.FloatingActionButton
+                        android:layout_width="30dp"
+                        android:layout_weight="1"
+                        android:scaleType="center"
+                        android:id="@+id/BPageOne_minusFromEndDistance"
+                        app:elevation="2dp"
+                        android:src="@drawable/ic_remove_black_24dp"
+                        android:layout_height="30dp" />
+                    <TextView
+                        style="@style/GridLayoutTextView"
+                        android:layout_weight="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:text="@string/EndDistance"
+                        android:id="@+id/BPageTwo_TV_EndDistance"
+                        />
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/BPageOne_addToEndDistance"
+                        android:layout_width="30dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_add_black_24dp"
+                        app:elevation="2dp"
+                        android:scaleType="center"
+                        android:layout_height="30dp" />
+                </LinearLayout>
                 <TextView
                     style="@style/GridLayoutTextView"
                     android:text="@string/AreaAn"
@@ -269,7 +331,6 @@
             android:src="@drawable/ic_chevron_right_white_24dp"
             android:layout_margin="16dp"
             android:layout_gravity="end|bottom"/>
-
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/BPageTwo_FABPrevious"
             android:layout_width="56dp"

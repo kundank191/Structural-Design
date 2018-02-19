@@ -19,6 +19,10 @@ public class Variables {
     public static String endDistance = "Bolt ggGrade6";
     public static String Anc = "Bolt dGrade7";
     public static String Ago = "Bolt 1Grade8";
+    public static String no_of_shear_Planes = "number of shear planes";
+    public static String ultimateLoad_fu = " Ultimate load";
+    public static String factorOfSafety_Ymb = "Factor of safety Ymb";
+    public static String thicknessThinnerPlate = "Thickness of thinner plate";
 
     public static String section_l = "Section l";
     public static String section_h = "Section adas";
@@ -26,8 +30,21 @@ public class Variables {
     public static String section_a = "Section asdasdas";
     public static String section_b = "Sectionfs";
     public static String section_c = "Section dfhdf";
-    public static String section_MI = "Section dfggfs";
+    public static String section_MI = "Section dfggfs"
+                            , SlendernessRatio = "Slenderness Ratio";
 
+    public static String Clearance = "Clearance"
+            , Length_LC = "Length)LC"
+            , numOfRows = "number of rows"
+            , length_BS = "Lenght-BS"
+            , value_B = " value of B"
+            , Strength_Tdg = " strenght TDg"
+            , Strength_Tdn = " strenght TDn"
+            , Strength_Tdb = " strenght TDasd"
+            , Strength_Td = " strenght TD"
+            , Area_Avg = "Area Avg"
+            , Area_Atg = "Area Atg"
+            , Area_Atn = "Area Atn";
     public static String unitMM = " mm";
     public static String unitMM2 = " mm2";
     public static String unitMM4 = " mm4";

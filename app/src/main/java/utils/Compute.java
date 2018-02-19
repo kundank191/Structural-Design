@@ -48,9 +48,69 @@ public class Compute {
     }
 
     public static String getClearance(String boltDia){
+        if(getFloatOf(boltDia) < 16)
+            return "1";
+        if(getFloatOf(boltDia) < 24)
+            return "2";
         return "3";
     }
 
+    public static String getLengthOfConnection(String numberOfBolts, String numberOfRows, String pitch){
+        return String.valueOf(getFloatOf(pitch)*(getFloatOf(numberOfBolts)/getFloatOf(numberOfRows) - 1));
+    }
+
+    public static String getLengthBS(String section_l, String section_a, String section_t){
+        return String.valueOf(getFloatOf(section_l) + getFloatOf(section_a) - getFloatOf(section_t));
+    }
+
+    public static String getValueB(String section_l, String section_t, String length_BS, String length_LC
+                                            ,String Strength_fy, String Strength_fu){
+        return String.valueOf(1.4 - .076
+                                        *(getFloatOf(section_l)/getFloatOf(section_t))
+                                        *(getFloatOf(Strength_fy)/getFloatOf(Strength_fu))
+                                        *(getFloatOf(length_BS)/getFloatOf(length_LC)));
+    }
+
+    public static String getAreaAnc(String section_l, String section_t, String boltDia, String clearance){
+        return String.valueOf((getFloatOf(section_l) - getFloatOf(section_t)/2)*getFloatOf(section_l)
+                                        - (getFloatOf(boltDia) + getFloatOf(clearance))*getFloatOf(section_l)*2);
+    }
+
+    public static String getAreaAgo(String section_h, String section_t){
+        return String.valueOf((getFloatOf(section_h) - getFloatOf(section_t))*getFloatOf(section_t));
+    }
+
+    public static String getStrengthTdg(String Strength_fy,String Area_Ag, String factor_of_safety_Ymo){
+        return String.valueOf(getFloatOf(Strength_fy) * getFloatOf(Area_Ag) / getFloatOf(factor_of_safety_Ymo));
+    }
+
+    public static String getStrengthTdn(String Area_Anc, String Strength_fu, String factor_of_Safety_Ym1
+                                            ,String value_B, String strength_fy, String Area_Ago
+                                            , String factor_of_safety_Ymo){
+        return String.valueOf(0.9*getFloatOf(Area_Anc)*getFloatOf(Strength_fu)/getFloatOf(factor_of_Safety_Ym1)
+                                + getFloatOf(value_B)*getFloatOf(strength_fy)*getFloatOf(Area_Ago)/getFloatOf(factor_of_safety_Ymo));
+    }
+
+    public static String getNoOfRows(String NoOfBolts, String l){
+        if(getFloatOf(NoOfBolts) <= 3){
+            return "1";
+        }
+        if(getFloatOf(l) <= 100)
+        {
+            return "1";
+        }
+        return "2";
+    }
+
+    public static String getSlendernessRatio(String section_MI, String effectiveLength, String Ag){
+        return String.valueOf(getFloatOf(effectiveLength)/Math.sqrt(getFloatOf(section_MI)/getFloatOf(Ag)));
+    }
+
+    //TODO : Implement Tdb
+    //TODO : Implement Avg
+    //TODO : Implement Atg
+    //TODO : Implement Atn
+    //TODO : Find minimum of Tdg , Tdn , Tdb
     /**
      *
      * @param pitch current pitch value
@@ -59,10 +119,10 @@ public class Compute {
      */
     public static boolean pitchCanChange(String pitch, String T, String boltDia, boolean plusClicked){
         if(plusClicked){
-            pitch = String.valueOf(getFloatOf(pitch) + 5);
+            pitch = String.valueOf(getFloatOf(pitch) + 1);
             return getFloatOf(pitch) <= (Math.min(getFloatOf("200"),getFloatOf(T) * 16));
         } else {
-            pitch = String.valueOf(getFloatOf(pitch) - 5);
+            pitch = String.valueOf(getFloatOf(pitch) - 1);
             return getFloatOf(pitch) >= (getFloatOf(boltDia) * 2.5);
         }
 
@@ -77,10 +137,10 @@ public class Compute {
      */
     public static boolean endDistanceCanChange(String endDistance,String T, String boltDia, boolean plusClicked){
         if(plusClicked){
-            endDistance = String.valueOf(getFloatOf(endDistance) + 5);
+            endDistance = String.valueOf(getFloatOf(endDistance) + 1);
             return getFloatOf(endDistance) <= (getFloatOf(T)*4 + 10);
         } else {
-            endDistance = String.valueOf(getFloatOf(endDistance) - 5);
+            endDistance = String.valueOf(getFloatOf(endDistance) - 1);
             return getFloatOf(endDistance) >= (getFloatOf(boltDia) * 1.5);
         }
 
