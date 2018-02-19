@@ -134,19 +134,16 @@ public class BoltPageThree extends Fragment {
                             Snackbar snackbar = getSnackBar(mCoordinatorLayout,R.string.FailureTd);
                             snackbar.setDuration(Snackbar.LENGTH_LONG);
                             snackbar.show();
-                            mNextListener.onPageThreeNextClicked();
                         }
                     } else {
                         Snackbar snackbar = getSnackBar(mCoordinatorLayout,R.string.FailureB);
                         snackbar.setDuration(Snackbar.LENGTH_LONG);
                         snackbar.show();
-                        mNextListener.onPageThreeNextClicked();
                     }
                 } else {
                     Snackbar snackbar = getSnackBar(mCoordinatorLayout,R.string.FailureSR);
                     snackbar.setDuration(Snackbar.LENGTH_LONG);
                     snackbar.show();
-                    mNextListener.onPageThreeNextClicked();
                 }
 
             }

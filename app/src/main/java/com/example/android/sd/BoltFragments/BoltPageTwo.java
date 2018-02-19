@@ -50,7 +50,7 @@ public class BoltPageTwo extends Fragment {
     private String Thickness_thinner_plate_T, mBoltDia;
     private String Ultimate_Load_fu = "400";
     private String Number_Of_Shear_Planes_n = "1";
-    private String Factor_Of_Safety_Ymb = "1.25", FactoredLoad;
+    private String Factor_Of_Safety_Ymb = "1.25", FactoredLoad, NumberOfBolts, NumberOfRows;
 
     //private OnFragmentInteractionListener mListener;
 
@@ -78,6 +78,8 @@ public class BoltPageTwo extends Fragment {
         Factor_Of_Safety_Ymb = bundle.getString(Variables.factorOfSafety_Ymb);
         FactoredLoad = bundle.getString(Variables.factoredLoad);
         mBoltDia = bundle.getString(Variables.diaOfBolt);
+        NumberOfBolts = bundle.getString(Variables.numberBolt);
+        NumberOfRows = bundle.getString(Variables.numOfRows);
         TVGrade.setText(bundle.getString(Variables.gradeOfBolt) );
         TVDia.setText(String.format("%s%s", bundle.getString(Variables.diaOfBolt), Variables.unitMM));
         TVBoltValue.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(bundle.getString(Variables.valueBolt)), Variables.unitKN));
@@ -134,7 +136,8 @@ public class BoltPageTwo extends Fragment {
         (rootView.findViewById(R.id.BPageOne_addToPitch)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Compute.pitchCanChange(mDefaultPitch,Thickness_thinner_plate_T,mBoltDia,true)){
+                if(Compute.pitchCanChange(mDefaultPitch,Thickness_thinner_plate_T,mBoltDia,true)
+                        && !Compute.ifLongConnection(NumberOfBolts,NumberOfRows,mDefaultPitch,mBoltDia)){
                     mDefaultPitch = String.valueOf(getFloatOf(mDefaultPitch) + 1);
                     TVPitch.setText(String.format("%s%s", FunctionKit.getTwoDecimalValue(mDefaultPitch), Variables.unitMM));
                     String Bolt_value = Compute.BoltValue(mBoltDia,mDefaultEndDistance,mDefaultPitch,Factor_Of_Safety_Ymb,

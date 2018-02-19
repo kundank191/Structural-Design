@@ -178,6 +178,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         bundle.putString(Variables.diaOfBolt,Dia_Of_Bolts);
         bundle.putString(Variables.valueBolt,Bolt_value);
         bundle.putString(Variables.numberBolt,No_Of_Bolts);
+        bundle.putString(Variables.numOfRows,"2");
         bundle.putString(Variables.strengthBolt,Bolt_Strength);
         bundle.putString(Variables.pitch,Pitch_Distance);
         bundle.putString(Variables.endDistance,End_Distance);

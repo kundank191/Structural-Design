@@ -108,8 +108,8 @@ public class Compute {
      * @return
      */
     public static String getAreaAnc(String section_l, String section_t, String boltDia, String clearance){
-        return String.valueOf((getFloatOf(section_l) - getFloatOf(section_t)/2)*getFloatOf(section_l)
-                                        - (getFloatOf(boltDia) + getFloatOf(clearance))*getFloatOf(section_l)*2);
+        return String.valueOf((getFloatOf(section_l) - getFloatOf(section_t)/2)*getFloatOf(section_t)
+                                        - (getFloatOf(boltDia) + getFloatOf(clearance))*getFloatOf(section_t)*2);
     }
 
     /**
@@ -199,6 +199,10 @@ public class Compute {
             return getFloatOf(pitch) >= (getFloatOf(boltDia) * 2.5);
         }
 
+    }
+
+    public static boolean ifLongConnection(String numberOfBolts,String numberOfRows, String pitch, String BoltDia){
+        return (getFloatOf(pitch) + 1) * (getFloatOf(numberOfBolts) / getFloatOf(numberOfRows) - 1) > 15 * getFloatOf(BoltDia);
     }
 
     /**
