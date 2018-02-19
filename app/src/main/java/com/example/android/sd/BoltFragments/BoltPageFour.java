@@ -7,8 +7,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.android.sd.R;
+
+import utils.Variables;
+
+import static utils.FunctionKit.getTwoDecimalValue;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,16 +41,32 @@ public class BoltPageFour extends Fragment {
         }
     }
 
-    private void setupViews(Bundle data){
-
-    }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView =  inflater.inflate(R.layout.bolt_page_four, container, false);
         mCoordinatorLayout = rootView.findViewById(R.id.BPageFour_CoordinateLayout);
+        if(dataBundle != null){
+            ((TextView) rootView.findViewById(R.id.BPageFour_TV_FactoredLoad))
+                    .setText(String.format("%s%s", getTwoDecimalValue(dataBundle.getString(Variables.factoredLoad)), Variables.unitKN));
+            ((TextView) rootView.findViewById(R.id.BPageFour_TV_boltGrade))
+                    .setText(dataBundle.getString(Variables.gradeOfBolt));
+            ((TextView) rootView.findViewById(R.id.BPageFour_TV_NoOfBolt))
+                    .setText(dataBundle.getString(Variables.numberBolt));
+            ((TextView) rootView.findViewById(R.id.BPageFour_TV_NoOfRows))
+                    .setText(dataBundle.getString(Variables.numOfRows));
+            ((TextView) rootView.findViewById(R.id.BPageFour_TV_BoltStrength))
+                    .setText(String.format("%s%s", getTwoDecimalValue(dataBundle.getString(Variables.strengthBolt)), Variables.unitKN));
+            ((TextView) rootView.findViewById(R.id.BPAgeFour_TV_section_l))
+                    .setText(dataBundle.getString(Variables.section_l));
+            ((TextView) rootView.findViewById(R.id.BPAgeFour_TV_section_h))
+                    .setText(dataBundle.getString(Variables.section_h));
+            ((TextView) rootView.findViewById(R.id.BPAgeFour_TV_section_t))
+                    .setText(dataBundle.getString(Variables.section_t));
+            ((TextView) rootView.findViewById(R.id.BPageFour_TV_Td))
+                    .setText(String.format("%s%s", getTwoDecimalValue(dataBundle.getString(Variables.Strength_Td)), Variables.unitKN));
+        }
         (rootView.findViewById(R.id.BPageFour_FABPrevious)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,9 +79,6 @@ public class BoltPageFour extends Fragment {
                 mConfirmListener.onPageFourConfirmClicked();
             }
         });
-        if(dataBundle != null){
-            setupViews(dataBundle);
-        }
 
         return rootView;
     }
