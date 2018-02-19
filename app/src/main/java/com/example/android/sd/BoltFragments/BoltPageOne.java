@@ -35,12 +35,12 @@ public class BoltPageOne extends Fragment {
 
     private String mGradeOfBolt;
     private String mDiaOfBolt;
-    private String mMinimumThickness;
+    private String mMinimumThickness, EffectiveLength;
     private Bundle dataBundle = null;
 
     private EditText mBoltGradeE;
     private EditText mBoltDia;
-    private EditText mMinimumThicknessET;
+    private EditText mMinimumThicknessET, ETEffectiveLength;
     private CoordinatorLayout mCoordinatorLayout;
 
     //private OnFragmentInteractionListener mListener;
@@ -58,10 +58,11 @@ public class BoltPageOne extends Fragment {
     }
 
     //Setting up the views if value is provided
-    private void setupViews(String boltGrade, String boltDia, String minimumThickness){
+    private void setupViews(String boltGrade, String boltDia, String minimumThickness, String EffectiveLength){
         mBoltGradeE.setText(boltGrade);
         mBoltDia.setText(boltDia);
         mMinimumThicknessET.setText(minimumThickness);
+        ETEffectiveLength.setText(EffectiveLength);
     }
 
     @Override
@@ -72,6 +73,7 @@ public class BoltPageOne extends Fragment {
         mBoltGradeE = (EditText) rootView.findViewById(R.id.BPageOne_BoltGrade);
         mBoltDia = (EditText) rootView.findViewById(R.id.BPageOne_BoltDia);
         mMinimumThicknessET = (EditText) rootView.findViewById(R.id.BPageOne_MinimumThickness);
+        ETEffectiveLength = (EditText) rootView.findViewById(R.id.BPageOne_EffectiveLength);
 //        if(savedInstanceState != null){
 //            mGradeOfBolt = savedInstanceState.getString(ARG_PARAM_GRADE);
 //            mDiaOfBolt = savedInstanceState.getString(ARG_PARAM_DIA);
@@ -81,7 +83,8 @@ public class BoltPageOne extends Fragment {
             mGradeOfBolt = dataBundle.getString(Variables.gradeOfBolt);
             mDiaOfBolt = dataBundle.getString(Variables.diaOfBolt);
             mMinimumThickness = dataBundle.getString(Variables.minimumThickness);
-            setupViews(mGradeOfBolt, mDiaOfBolt, mMinimumThickness);
+            EffectiveLength = dataBundle.getString(Variables.effectiveLength);
+            setupViews(mGradeOfBolt, mDiaOfBolt, mMinimumThickness, EffectiveLength);
         }
 
         mCoordinatorLayout = (CoordinatorLayout) rootView.findViewById(R.id.BPageOne_CoordinateLayout);
@@ -94,8 +97,13 @@ public class BoltPageOne extends Fragment {
                     if(Float.parseFloat(dataFrom(mBoltGradeE)) <= 10) {
                         if (dataFrom(mBoltDia) != null) {
                             if(dataFrom(mMinimumThicknessET) != null) {
-                                mListener.onPageOneNextClicked(dataFrom(mBoltGradeE), dataFrom(mBoltDia), dataFrom(mMinimumThicknessET));
-                            } else {
+                                if(dataFrom(ETEffectiveLength) != null) {
+                                    mListener.onPageOneNextClicked(dataFrom(mBoltGradeE), dataFrom(mBoltDia), dataFrom(mMinimumThicknessET), dataFrom(ETEffectiveLength));
+                                } else {
+                                    Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.empty_effective_length);
+                                    snackbar.show();
+                                }
+                                } else {
                                 Snackbar snackbar = getSnackBar(mCoordinatorLayout, R.string.enter_minimum_plate_thickness);
                                 snackbar.show();
                             }
@@ -178,7 +186,7 @@ public class BoltPageOne extends Fragment {
     }
 
     public interface onFABNextClickListener{
-        void onPageOneNextClicked(String boltGrade, String boltDia, String minimumThickness_T);
+        void onPageOneNextClicked(String boltGrade, String boltDia, String minimumThickness_T, String effectiveLength);
     }
 
     public interface onFABPreviousClickListener{

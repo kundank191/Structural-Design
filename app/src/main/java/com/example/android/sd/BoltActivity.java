@@ -103,7 +103,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
      * @param boltGrade the value of boltGrade passed from page two
      * @param boltDia the value of boltDia passed from page two
      */
-    private void updateValuesAfterPageOne(String boltGrade, String boltDia, String minimum_T){
+    private void updateValuesAfterPageOne(String boltGrade, String boltDia, String minimum_T, String effective_Length){
 
         Grade_Of_Bolts = boltGrade;
         Dia_Of_Bolts = boltDia;
@@ -117,6 +117,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         Area_Ag = String.valueOf(getFloatOf(Area_An)*1.2);
         No_Of_Bolts = Compute.NumberOfBolts(Factored_Load,Bolt_value);
         Bolt_Strength = String.valueOf(getFloatOf(No_Of_Bolts)*getFloatOf(Bolt_value));
+        Effective_Length = effective_Length;
 
     }
 
@@ -164,6 +165,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
         bundle.putString(Variables.gradeOfBolt,Grade_Of_Bolts);
         bundle.putString(Variables.diaOfBolt,Dia_Of_Bolts);
         bundle.putString(Variables.minimumThickness, Thickness_thinner_plate_T);
+        bundle.putString(Variables.effectiveLength, Effective_Length);
         return bundle;
     }
 
@@ -254,8 +256,8 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
     }
 
     @Override
-    public void onPageOneNextClicked(String boltGrade, String boltDia, String minimumThickness_T) {
-        updateValuesAfterPageOne(boltGrade,boltDia,minimumThickness_T);
+    public void onPageOneNextClicked(String boltGrade, String boltDia, String minimumThickness_T, String effective_Length) {
+        updateValuesAfterPageOne(boltGrade,boltDia,minimumThickness_T, effective_Length);
         if(boltPageTwoFragment == null) {
             boltPageTwoFragment = new BoltPageTwo();
         }

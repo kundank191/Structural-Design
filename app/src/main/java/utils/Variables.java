@@ -22,7 +22,7 @@ public class Variables {
     public static String no_of_shear_Planes = "number of shear planes";
     public static String ultimateLoad_fu = " Ultimate load";
     public static String factorOfSafety_Ymb = "Factor of safety Ymb";
-    public static String thicknessThinnerPlate = "Thickness of thinner plate";
+    public static String thicknessThinnerPlate = "Thickness of thinner plate", effectiveLength = "Effective Length 101";
 
     public static String section_l = "Section l";
     public static String section_h = "Section adas";
