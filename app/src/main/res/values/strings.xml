@@ -67,7 +67,14 @@
     <!-- For Fourth Page -->
     <string name="Final_Message">The Design</string>
     <string name="Section">The selected Section is :</string>
-
+    <string name="tension">Tension</string>
+    <string name="compression">Compression</string>
+    <string name="compression_select_section">Select Section</string>
+    <string name="i_section">I section</string>
+    <string name="channel_section">Channel section</string>
+    <string name="angle_section">Angle section</string>
+    <string name="built_section">Built section</string>
+    <string name="assumed_fcd_value">Assumed FCD Value :</string>
 
 
 </resources>

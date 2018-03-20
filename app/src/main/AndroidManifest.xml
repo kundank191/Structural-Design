@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".BoltActivity" />
-        <activity android:name=".WeldActivity"/>
+        <activity android:name=".WeldActivity" />
+        <activity android:name=".CompressionActivity"></activity>
     </application>
 
 </manifest>

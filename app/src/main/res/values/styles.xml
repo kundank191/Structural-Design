@@ -11,9 +11,10 @@
     <!-- Style for Radio button -->
     <style name="RadioButton">
         <item name="android:layout_weight">1</item>
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
+        <item name="android:textAlignment">viewStart</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:buttonTint">@color/colorWhite</item>
     </style>
@@ -33,6 +34,16 @@
         <item name="android:textColorHint">@color/colorGrey</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- Style for normal Text View -->
+    <style name="normalTextView">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/colorWhite</item>
     </style>
 
     <!-- Style for grid layout text view-->

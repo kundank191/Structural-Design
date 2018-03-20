@@ -47,7 +47,7 @@ public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFAB
     private String Section_b = Variables.defaultValue;
     private String Section_c = Variables.defaultValue;
     private String Section_MI = Variables.defaultValue, Effective_Length = "200", SlendernessRatio = "20";
-    private String Ultimate_Load_fu = "400", Yeild_Strength_fy = "250";
+    private String Ultimate_Load_fu = "410", Yeild_Strength_fy = "250";
     private String Number_Of_Shear_Planes_n = "1";
     private String Factor_Of_Safety_Ymb = "1.25", Factor_Of_Safety_Ymo = "1.1";
     private String Thickness_thinner_plate_T = "10";

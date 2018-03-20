@@ -9,6 +9,7 @@ import java.text.DecimalFormat;
 
 /**
  * Created by Kundan on 14-02-2018.
+ * some basic functionality which will be used again and again in the app
  */
 
 public class FunctionKit {
