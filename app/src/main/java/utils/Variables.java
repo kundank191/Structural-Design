@@ -52,6 +52,8 @@ public class Variables {
 
     public static String forPageTwoTVValues = "the text view values";
     public static String forPageTwoETValues = "The edit text ones";
+    public static String pageOneRevisiting = "Yes we are revisiting page one";
+    public static String pageTwoRevisiting = "Yes we are revisiting page two";
 
 
 }

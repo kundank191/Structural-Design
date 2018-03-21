@@ -21,7 +21,7 @@
             android:id="@+id/radio_group_section_selector"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <RadioButton
@@ -40,6 +40,7 @@
 
         <TextView
             android:id="@+id/page_one_FCD_TV"
+            android:layout_margin="12dp"
             style="@style/normalTextView"
             android:text="@string/assumed_fcd_value" />
 
@@ -48,185 +49,7 @@
             style="@style/normalTextView"
             android:text="@string/required_area"/>
 
-        <view
-            android:background="@color/colorWhite"
-            android:layout_marginTop="4dp"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
 
-        <TextView
-            android:id="@+id/page_one_insert_section"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingTop="4dp"
-            style="@style/normalTextView"
-            android:text="@string/select_section_text"/>
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_marginBottom="80dp"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:orientation="vertical"
-                android:layout_height="wrap_content">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:baselineAligned="false"
-                    android:layout_marginTop="8dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="18dp"
-                        android:layout_marginEnd="18dp"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorGrey"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/section_l"
-                            android:maxLength="3"
-                            android:hint="@string/Value_l"
-                            android:gravity="center"
-                            style="@style/EditText"
-                            android:textColor="@color/colorWhite"/>
-                    </android.support.design.widget.TextInputLayout>
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="18dp"
-                        android:layout_marginEnd="18dp"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorGrey"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/section_h"
-                            android:maxLength="3"
-                            android:hint="@string/Value_h"
-                            android:gravity="center"
-                            style="@style/EditText"
-                            android:textColor="@color/colorWhite"/>
-                    </android.support.design.widget.TextInputLayout>
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="18dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="18dp"
-                        android:textColorHint="@color/colorGrey"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/section_t"
-                            android:maxLength="3"
-                            android:hint="@string/Value_t"
-                            android:gravity="center"
-                            style="@style/EditText"
-                            android:textColor="@color/colorWhite"/>
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:baselineAligned="false"
-                    android:layout_marginTop="8dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="18dp"
-                        android:layout_marginEnd="18dp"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorGrey"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/section_a"
-                            android:maxLength="3"
-                            android:hint="@string/Value_a"
-                            android:gravity="center"
-                            style="@style/EditText"
-                            android:textColor="@color/colorWhite"/>
-                    </android.support.design.widget.TextInputLayout>
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="18dp"
-                        android:layout_marginEnd="18dp"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorGrey"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/section_b"
-                            android:maxLength="3"
-                            android:hint="@string/Value_b"
-                            android:gravity="center"
-                            style="@style/EditText"
-                            android:textColor="@color/colorWhite"/>
-                    </android.support.design.widget.TextInputLayout>
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="18dp"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="18dp"
-                        android:textColorHint="@color/colorGrey"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/section_c"
-                            android:maxLength="3"
-                            android:hint="@string/Value_c"
-                            android:gravity="center"
-                            style="@style/EditText"
-                            android:textColor="@color/colorWhite"/>
-                    </android.support.design.widget.TextInputLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:baselineAligned="false"
-                    android:layout_marginTop="8dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="18dp"
-                        android:layout_marginEnd="18dp"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorGrey"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/section_area"
-                            android:maxLength="3"
-                            android:hint="@string/area"
-                            android:gravity="center"
-                            style="@style/EditText"
-                            android:textColor="@color/colorWhite"/>
-                    </android.support.design.widget.TextInputLayout>
-                    <android.support.design.widget.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_marginStart="18dp"
-                        android:layout_marginEnd="18dp"
-                        android:layout_weight="1"
-                        android:textColorHint="@color/colorGrey"
-                        android:layout_height="wrap_content">
-                        <EditText
-                            android:id="@+id/section_rvv"
-                            android:maxLength="3"
-                            android:hint="@string/rvv"
-                            android:gravity="center"
-                            style="@style/EditText"
-                            android:textColor="@color/colorWhite"/>
-                    </android.support.design.widget.TextInputLayout>
-                     </LinearLayout>
-                <android.support.design.widget.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_marginStart="18dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="18dp"
-                    android:textColorHint="@color/colorGrey"
-                    android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/section_cg_distance"
-                        android:maxLength="3"
-                        android:hint="@string/cg_distance"
-                        android:gravity="center"
-                        style="@style/EditText"
-                        android:textColor="@color/colorWhite"/>
-                </android.support.design.widget.TextInputLayout>
-            </LinearLayout>
-        </ScrollView>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton

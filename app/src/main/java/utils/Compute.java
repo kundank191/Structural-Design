@@ -9,6 +9,15 @@ import static utils.FunctionKit.getFloatOf;
 
 public class Compute {
 
+    /**
+     *
+     * @param serviceLoad the service load the design member has to bear
+     * @return the factored load
+     */
+    public static String FactoredLoad(String serviceLoad){
+        return String.valueOf(getFloatOf(serviceLoad) * 1.5);
+    }
+
     public static String BoltValue(String boltDia, String endDistance, String pitch,
                             String Ymb, String n, String fu, String fub, String T){
         String kb = String.valueOf(Math.min(Math.min(getFloatOf(endDistance)/(3*getFloatOf(boltDia))
@@ -221,5 +230,9 @@ public class Compute {
             return getFloatOf(endDistance) >= (getFloatOf(boltDia) * 1.5);
         }
 
+    }
+
+    public static String AreaRequired(String factoredLoad, String fcdValue){
+        return String.valueOf(getFloatOf(factoredLoad)*1000/getFloatOf(fcdValue));
     }
 }

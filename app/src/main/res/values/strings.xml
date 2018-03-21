@@ -80,11 +80,19 @@
     <!-- Page one compression member -->
     <string name="assumed_fcd_value">Assumed FCD Value :</string>
     <string name="select_section_message">Please select a section !</string>
-    <string name="required_area">Required Area :</string>
+    <string name="required_area">Required Area : </string>
     <string name="select_section_text">Select a section based on above area and provide necessary details</string>
     <string name="area">area (mm2)</string>
     <string name="rvv">rvv (mm)</string>
     <string name="cg_distance">C.G distance (mm)</string>
+
+    <!-- Page two compression member -->
+    <string name="enter_section_C_a">Enter a value for section for bolting</string>
+    <string name="enter_section_C_b">Enter b value of section for bolting</string>
+    <string name="enter_section_C_c">Enter c value of section for bolting</string>
+    <string name="enter_section_csa">Enter cross sectional area of Section</string>
+    <string name="enter_section_rvv">Enter the minimum radius of gyration of section</string>
+    <string name="enter_section_CG">Enter the C.G distance of the section from its axis</string>
 
 
 </resources>

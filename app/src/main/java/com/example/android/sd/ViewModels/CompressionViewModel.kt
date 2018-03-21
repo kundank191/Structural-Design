@@ -12,8 +12,10 @@ public class CompressionViewModel : ViewModel() {
     val defaultValue: String = "Default Value"
     // Stores the service load passed by the main activity
     var serviceLoad : String = defaultValue
+    var factoredLoad : String = defaultValue
     var fcdValue : String = defaultValue
     var selectedSection: String = defaultValue
+    var selectedSectionIndex : String = defaultValue
     var areaRequired: String = defaultValue
     var section_l : String = defaultValue
     var section_h : String = defaultValue
