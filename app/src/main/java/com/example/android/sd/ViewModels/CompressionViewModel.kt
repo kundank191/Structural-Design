@@ -14,4 +14,14 @@ public class CompressionViewModel : ViewModel() {
     var serviceLoad : String = defaultValue
     var fcdValue : String = defaultValue
     var selectedSection: String = defaultValue
+    var areaRequired: String = defaultValue
+    var section_l : String = defaultValue
+    var section_h : String = defaultValue
+    var section_t : String = defaultValue
+    var section_a : String = defaultValue
+    var section_b : String = defaultValue
+    var section_c : String = defaultValue
+    var section_area : String = defaultValue
+    var section_rvv : String = defaultValue
+    var section_cg_distance : String = defaultValue
 }

@@ -1,15 +1,19 @@
 package com.example.android.sd.CompressionFragments
 
 import android.app.Fragment
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
+import android.support.design.widget.CoordinatorLayout
+import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.android.sd.R
 import com.example.android.sd.ViewModels.CompressionViewModel
+import kotlinx.android.synthetic.main.c_fragment_one.*
 import kotlinx.android.synthetic.main.c_fragment_one.view.*
+import utils.FunctionKit
 
 
 /**
@@ -37,7 +41,11 @@ public class CFragmentOne : Fragment() {
 
         val rootView = inflater!!.inflate(R.layout.c_fragment_one,container,false)
         rootView.C_One_FABNext.setOnClickListener {
-            Log.i("FloatButton","Next Clicked")
+            if(mViewModel.fcdValue != mViewModel.defaultValue){
+
+            } else {
+                FunctionKit.getSnackBar(C_One_CoordinateLayout as CoordinatorLayout,R.string.select_section_message).show()
+            }
         }
         rootView.C_One_FABPrevious.setOnClickListener {
             mPreviousListener.onPageOnePreviousClickListener()
@@ -46,13 +54,13 @@ public class CFragmentOne : Fragment() {
         rootView.radio_group_section_selector.setOnCheckedChangeListener { radioGroup, i ->
             rootView.page_one_FCD_TV.text = getTheSection(i)
         }
-        mViewModel = CompressionViewModel()
         return rootView
     }
 
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
+        mViewModel = ViewModelProviders.of(context as FragmentActivity).get(CompressionViewModel::class.java)
         try {
             mNextListener = context as OnNextClickListener
         } catch (e : ClassCastException){
@@ -98,7 +106,7 @@ public class CFragmentOne : Fragment() {
                 mViewModel.selectedSection = getString(R.string.built_section)
             }
         }
-        return "Assumed FCD value $fcdValue"
+        return "Assumed FCD value : $fcdValue"
     }
     override fun onDetach() {
         super.onDetach()

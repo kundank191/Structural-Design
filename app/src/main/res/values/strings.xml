@@ -67,6 +67,8 @@
     <!-- For Fourth Page -->
     <string name="Final_Message">The Design</string>
     <string name="Section">The selected Section is :</string>
+
+    <!-- Compression member -->
     <string name="tension">Tension</string>
     <string name="compression">Compression</string>
     <string name="compression_select_section">Select Section</string>
@@ -74,7 +76,15 @@
     <string name="channel_section">Channel section</string>
     <string name="angle_section">Angle section</string>
     <string name="built_section">Built section</string>
+
+    <!-- Page one compression member -->
     <string name="assumed_fcd_value">Assumed FCD Value :</string>
+    <string name="select_section_message">Please select a section !</string>
+    <string name="required_area">Required Area :</string>
+    <string name="select_section_text">Select a section based on above area and provide necessary details</string>
+    <string name="area">area (mm2)</string>
+    <string name="rvv">rvv (mm)</string>
+    <string name="cg_distance">C.G distance (mm)</string>
 
 
 </resources>
