@@ -1,0 +1,168 @@
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.android.sd.CompressionFragments.CFragmentThree">
+
+    <TextView
+        android:id="@+id/page_three_slenderness_ratio"
+        style="@style/normalTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/SlendernessRatio"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.199">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/normalTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="S.R" />
+
+                <TextView
+                    style="@style/normalTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Fcd Value" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_gravity="center"
+                android:background="@color/colorWhite" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/normalTextView"
+                    android:id="@+id/s_r_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="S.R 1" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorGrey">
+
+                    <EditText
+                        android:id="@+id/fcd_1"
+                        style="@style/EditText"
+                        android:gravity="center"
+                        android:hint="@string/first_fcd"
+                        android:maxLength="5"
+                        android:textColor="@color/colorWhite" />
+                </android.support.design.widget.TextInputLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/s_r_2"
+                    style="@style/normalTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="S.R 2" />
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_weight="1"
+                    android:textColorHint="@color/colorGrey">
+
+                    <EditText
+                        android:id="@+id/fcd_2"
+                        style="@style/EditText"
+                        android:gravity="center"
+                        android:hint="@string/second_fcd"
+                        android:maxLength="5"
+                        android:textColor="@color/colorWhite" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:id="@+id/compression_page_three_coordinator"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/C_three_FABNext"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_chevron_right_white_24dp"
+            android:layout_margin="16dp"
+            android:layout_gravity="end|bottom"/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/C_three_FABPrevious"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_chevron_left_white_24dp"
+            android:layout_margin="16dp"
+            android:layout_gravity="bottom"/>
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</android.support.constraint.ConstraintLayout>

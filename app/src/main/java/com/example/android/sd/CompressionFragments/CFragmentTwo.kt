@@ -61,22 +61,34 @@ public class CFragmentTwo : Fragment() {
         rootView.page_two_area_required.text = area
 
         if(mRevisiting){
-
+            rootView.section_l.setText(mViewModel.section_l)
+            rootView.section_h.setText(mViewModel.section_h)
+            rootView.section_t.setText(mViewModel.section_t)
+            rootView.section_area.setText(mViewModel.section_area)
+            rootView.section_rvv.setText(mViewModel.section_rvv)
+            rootView.section_cg_distance.setText(mViewModel.section_cg_distance)
+            rootView.section_effective_length.setText(mViewModel.effectiveLength)
         }
         rootView.C_two_FABNext.setOnClickListener {
-            if(!TextUtils.isEmpty(section_l.text)){
-                if(!TextUtils.isEmpty(section_h.text)){
-                    if(!TextUtils.isEmpty(section_t.text)){
-                        if(!TextUtils.isEmpty(section_area.text)){
-                            if(!TextUtils.isEmpty(section_rvv.text)){
-                                if(!TextUtils.isEmpty(section_cg_distance.text)){
-                                    mViewModel.section_l = section_l.text.toString()
-                                    mViewModel.section_h = section_h.text.toString()
-                                    mViewModel.section_t = section_t.text.toString()
-                                    mViewModel.section_area = section_area.text.toString()
-                                    mViewModel.section_rvv = section_rvv.text.toString()
-                                    mViewModel.section_cg_distance = section_cg_distance.text.toString()
-                                    mNextListener.onPageTwoNextClickListener()
+            if(!TextUtils.isEmpty(rootView.section_l.text)){
+                if(!TextUtils.isEmpty(rootView.section_h.text)){
+                    if(!TextUtils.isEmpty(rootView.section_t.text)){
+                        if(!TextUtils.isEmpty(rootView.section_area.text)){
+                            if(!TextUtils.isEmpty(rootView.section_rvv.text)){
+                                if(!TextUtils.isEmpty(rootView.section_cg_distance.text)){
+                                    if(!TextUtils.isEmpty(rootView.section_effective_length.text)) {
+                                        mViewModel.section_l = rootView.section_l.text.toString()
+                                        mViewModel.section_h = rootView.section_h.text.toString()
+                                        mViewModel.section_t = rootView.section_t.text.toString()
+                                        mViewModel.section_area = rootView.section_area.text.toString()
+                                        mViewModel.section_rvv = rootView.section_rvv.text.toString()
+                                        mViewModel.section_cg_distance = rootView.section_cg_distance.text.toString()
+                                        mViewModel.effectiveLength = rootView.section_effective_length.text.toString()
+                                        mNextListener.onPageTwoNextClickListener()
+                                    } else {
+                                        FunctionKit.getSnackBar(second_page_coordinator_layout as CoordinatorLayout
+                                                ,R.string.enter_effective_length).show()
+                                    }
                                 } else {
                                     FunctionKit.getSnackBar(second_page_coordinator_layout as CoordinatorLayout
                                             ,R.string.enter_section_CG).show()

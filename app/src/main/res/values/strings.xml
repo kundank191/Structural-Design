@@ -93,6 +93,17 @@
     <string name="enter_section_csa">Enter cross sectional area of Section</string>
     <string name="enter_section_rvv">Enter the minimum radius of gyration of section</string>
     <string name="enter_section_CG">Enter the C.G distance of the section from its axis</string>
+    <string name="effective_length">Effective Length (mm)</string>
 
+    <!-- Page three compression member -->
+    <string name="enter_first_fcd_value">Enter the first fcd Value</string>
+    <string name="enter_second_fcd_value">Enter the second fcd Value</string>
+    <string name="enter_fcd_1">Enter the first Fcd value</string>
+    <string name="enter_fcd_2">Enter the Second Fcd value</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="first_fcd">First Fcd</string>
+    <string name="second_fcd">Second Fcd</string>
 
 </resources>

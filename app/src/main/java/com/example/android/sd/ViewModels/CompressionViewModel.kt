@@ -13,7 +13,12 @@ public class CompressionViewModel : ViewModel() {
     // Stores the service load passed by the main activity
     var serviceLoad : String = defaultValue
     var factoredLoad : String = defaultValue
+    var effectiveLength : String = defaultValue
     var fcdValue : String = defaultValue
+    var lowerFcdValue : String = defaultValue
+    var upperFcdValue : String = defaultValue
+    var calculatedFcdValue : String = defaultValue
+    var strengthSection : String = defaultValue
     var selectedSection: String = defaultValue
     var selectedSectionIndex : String = defaultValue
     var areaRequired: String = defaultValue
@@ -26,4 +31,8 @@ public class CompressionViewModel : ViewModel() {
     var section_area : String = defaultValue
     var section_rvv : String = defaultValue
     var section_cg_distance : String = defaultValue
+    var lower_SR : String = defaultValue
+    var upper_SR : String = defaultValue
+    var section_SR : String = defaultValue
+
 }

@@ -235,4 +235,25 @@ public class Compute {
     public static String AreaRequired(String factoredLoad, String fcdValue){
         return String.valueOf(getFloatOf(factoredLoad)*1000/getFloatOf(fcdValue));
     }
+
+    public static String SlendernessRatio(String effectiveLength, String rvv){
+        return String.valueOf(getFloatOf(effectiveLength)/getFloatOf(rvv));
+    }
+
+    public static String UpperSlendernessRatio(String slendernessRatio){
+        float sr = Float.parseFloat(slendernessRatio);
+        sr = sr / 10;
+        sr = sr * 10;
+        int sr2 = Math.round(sr);
+        return String.valueOf(sr2);
+    }
+
+    public static String LowerSlendernessRatio(String slendernessRatio){
+        float sr = Float.parseFloat(slendernessRatio);;
+        sr = sr / 10;
+        sr = sr + 1;
+        sr = sr * 10;
+        int sr2 = Math.round(sr);
+        return String.valueOf(sr);
+    }
 }

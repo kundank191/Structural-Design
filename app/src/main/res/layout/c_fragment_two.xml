@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content">
                     <EditText
                         android:id="@+id/section_area"
-                        android:maxLength="3"
+                        android:maxLength="6"
                         android:hint="@string/area"
                         android:gravity="center"
                         style="@style/EditText"
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content">
                     <EditText
                         android:id="@+id/section_rvv"
-                        android:maxLength="3"
+                        android:maxLength="4"
                         android:hint="@string/rvv"
                         android:gravity="center"
                         style="@style/EditText"
@@ -113,12 +113,9 @@
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_marginStart="18dp"
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
                 android:layout_marginEnd="18dp"
-                android:layout_marginBottom="80dp"
                 android:textColorHint="@color/colorGrey"
-                android:layout_height="0dp">
+                android:layout_height="wrap_content">
                 <EditText
                     android:id="@+id/section_cg_distance"
                     android:maxLength="3"
@@ -126,6 +123,21 @@
                     android:gravity="center"
                     style="@style/EditText"
                     android:textColor="@color/colorWhite"/>
+            </android.support.design.widget.TextInputLayout>
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="18dp"
+                android:layout_marginBottom="80dp"
+                android:layout_marginEnd="18dp"
+                android:textColorHint="@color/colorGrey"
+                android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/section_effective_length"
+                android:maxLength="5"
+                android:hint="@string/effective_length"
+                android:gravity="center"
+                style="@style/EditText"
+                android:textColor="@color/colorWhite"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     <android.support.design.widget.FloatingActionButton

@@ -54,7 +54,7 @@ public class CFragmentOne : Fragment() {
             var area = getString(R.string.required_area) + " " + FunctionKit.getTwoDecimalValue(mViewModel.areaRequired) + Variables.unitMM2
             rootView.page_one_area_required.text = area
             var radioButton : RadioButton = rootView.radio_group_section_selector
-                                        .getChildAt(Integer.parseInt(mViewModel.selectedSectionIndex)) as RadioButton
+                                        .getChildAt(Integer.parseInt(mViewModel.selectedSectionIndex) - 1) as RadioButton
             radioButton.isChecked = true
         }
         rootView.C_One_FABNext.setOnClickListener {
@@ -69,8 +69,8 @@ public class CFragmentOne : Fragment() {
         }
 
         rootView.radio_group_section_selector.setOnCheckedChangeListener { radioGroup, i ->
-            rootView.page_one_FCD_TV.text = getTheSection(i)
-            mViewModel.selectedSectionIndex = i.toString()
+            rootView.page_one_FCD_TV.text = getTheSection(radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.checkedRadioButtonId)) + 1)
+            mViewModel.selectedSectionIndex = (radioGroup.indexOfChild(radioGroup.findViewById(radioGroup.checkedRadioButtonId)) + 1).toString()
             mViewModel.areaRequired = Compute.AreaRequired(mViewModel.factoredLoad, mViewModel.fcdValue)
             var area = getString(R.string.required_area) + " " + FunctionKit.getTwoDecimalValue(mViewModel.areaRequired) + Variables.unitMM2
             rootView.page_one_area_required.text = area
@@ -84,7 +84,7 @@ public class CFragmentOne : Fragment() {
         mViewModel = ViewModelProviders.of(context as FragmentActivity).get(CompressionViewModel::class.java)
         try {
             mNextListener = context as OnNextClickListener
-        } catch (e : ClassCastException){
+        } catch (e : Exception){
             throw ClassCastException(context.toString() + "Must Implement on Next Click Listener")
         }
 

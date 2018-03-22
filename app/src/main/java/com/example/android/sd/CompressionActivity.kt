@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import com.example.android.sd.CompressionFragments.CFragmentOne
+import com.example.android.sd.CompressionFragments.CFragmentThree
 import com.example.android.sd.CompressionFragments.CFragmentTwo
 import com.example.android.sd.ViewModels.CompressionViewModel
 import utils.Compute
@@ -14,7 +15,9 @@ import utils.Variables
 class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListener
                                                 , CFragmentOne.OnPreviousClickListener
                                                 , CFragmentTwo.OnNextClickListener
-                                                , CFragmentTwo.OnPreviousClickListener{
+                                                , CFragmentTwo.OnPreviousClickListener
+                                                , CFragmentThree.OnNextClickListener
+                                                , CFragmentThree.OnPreviousClickListener{
 
     lateinit var mViewModel : CompressionViewModel
 
@@ -34,15 +37,6 @@ class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListen
     }
 
     /**
-     * Revisits the first fragment
-     */
-    private fun addSecondFragment() {
-        fragmentManager.beginTransaction()
-                .replace(R.id.frame_layout, CFragmentTwo() as Fragment)
-                .commit()
-    }
-
-    /**
      * Replaces the first fragment with the second one
      */
     private fun revisitFirstFragment() {
@@ -55,6 +49,50 @@ class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListen
                 .commit()
     }
 
+    /**
+     * Revisits the first fragment
+     */
+    private fun addSecondFragment() {
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, CFragmentTwo() as Fragment)
+                .commit()
+    }
+
+    /**
+     * Preparing second fragment with default values
+     */
+    private fun revisitSecondFragment(){
+        val bundle : Bundle = Bundle()
+        bundle.putBoolean(Variables.pageOneRevisiting,true)
+        val fragment : CFragmentTwo = CFragmentTwo()
+        fragment.arguments = bundle
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, fragment)
+                .commit()
+    }
+
+    /**
+     * Revisits the first fragment
+     */
+    private fun addThirdFragment() {
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, CFragmentThree.newInstance())
+                .commit()
+    }
+
+    /**
+     * Preparing second fragment with default values
+     */
+    private fun revisitThirdFragment(){
+        val bundle : Bundle = Bundle()
+        bundle.putBoolean(Variables.pageOneRevisiting,true)
+        val fragment : CFragmentThree = CFragmentThree()
+        fragment.arguments = bundle
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, fragment as Fragment)
+                .commit()
+    }
+
     override fun onPageOneNextClickListener() {
         addSecondFragment()
     }
@@ -64,10 +102,18 @@ class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListen
     }
 
     override fun onPageTwoNextClickListener() {
-        Log.i("Hello","Hello")
+        addThirdFragment()
     }
 
     override fun onPageTwoPreviousClickListener() {
         revisitFirstFragment()
+    }
+
+    override fun onPageThreeNextClickListener() {
+        Log.i("Hello","Hello")
+    }
+
+    override fun onPageThreePreviousClickListener() {
+        revisitSecondFragment()
     }
 }
