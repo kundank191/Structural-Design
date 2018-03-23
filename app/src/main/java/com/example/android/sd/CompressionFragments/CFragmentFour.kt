@@ -1,10 +1,12 @@
 package com.example.android.sd.CompressionFragments
 
+import android.app.Activity
 import android.app.Fragment
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,12 +28,28 @@ class CFragmentFour : Fragment() {
     private lateinit var mPreviousListener : OnPreviousClickListener
     private var mRevisiting : Boolean = false
 
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        mViewModel = ViewModelProviders.of(activity as FragmentActivity).get(CompressionViewModel::class.java)
+        try {
+            mNextListener = activity as OnNextClickListener
+        } catch (e : ClassCastException){
+            throw ClassCastException(activity.toString() + "Must Implement on Next Click Listener")
+        }
+
+        try {
+            mPreviousListener = activity as OnPreviousClickListener
+        } catch (e : ClassCastException){
+            throw ClassCastException(activity.toString() + "Must Implement on Previous Click Listener")
+        }
+    }
+
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        mViewModel = ViewModelProviders.of(context as FragmentActivity).get(CompressionViewModel::class.java)
+        mViewModel = ViewModelProviders.of(context as AppCompatActivity).get(CompressionViewModel::class.java)
         try {
             mNextListener = context as OnNextClickListener
-        } catch (e : ClassCastException){
+        } catch (e : Exception){
             throw ClassCastException(context.toString() + "Must Implement on Next Click Listener")
         }
 

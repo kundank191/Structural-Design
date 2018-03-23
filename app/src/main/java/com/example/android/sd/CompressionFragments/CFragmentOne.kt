@@ -1,5 +1,6 @@
 package com.example.android.sd.CompressionFragments
 
+import android.app.Activity
 import android.app.Fragment
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
@@ -34,6 +35,38 @@ public class CFragmentOne : Fragment() {
     companion object {
         fun newInstance(): CFragmentOne {
             return CFragmentOne()
+        }
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        mViewModel = ViewModelProviders.of(activity as FragmentActivity).get(CompressionViewModel::class.java)
+        try {
+            mNextListener = activity as OnNextClickListener
+        } catch (e : Throwable){
+            throw ClassCastException(activity.toString() + "Must Implement on Next Click Listener")
+        }
+
+        try {
+            mPreviousListener = activity as OnPreviousClickListener
+        } catch (e : ClassCastException){
+            throw ClassCastException(activity.toString() + "Must Implement on Previous Click Listener")
+        }
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        mViewModel = ViewModelProviders.of(context as FragmentActivity).get(CompressionViewModel::class.java)
+        try {
+            mNextListener = context as OnNextClickListener
+        } catch (e : Throwable){
+            throw ClassCastException(context.toString() + "Must Implement on Next Click Listener")
+        }
+
+        try {
+            mPreviousListener = context as OnPreviousClickListener
+        } catch (e : ClassCastException){
+            throw ClassCastException(context.toString() + "Must Implement on Previous Click Listener")
         }
     }
 
@@ -76,23 +109,6 @@ public class CFragmentOne : Fragment() {
             rootView.page_one_area_required.text = area
         }
         return rootView
-    }
-
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        mViewModel = ViewModelProviders.of(context as FragmentActivity).get(CompressionViewModel::class.java)
-        try {
-            mNextListener = context as OnNextClickListener
-        } catch (e : Exception){
-            throw ClassCastException(context.toString() + "Must Implement on Next Click Listener")
-        }
-
-        try {
-            mPreviousListener = context as OnPreviousClickListener
-        } catch (e : ClassCastException){
-            throw ClassCastException(context.toString() + "Must Implement on Previous Click Listener")
-        }
     }
 
     /**
