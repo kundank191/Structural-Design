@@ -74,7 +74,7 @@
     <string name="compression_select_section">Select Section</string>
     <string name="i_section">I section</string>
     <string name="channel_section">Channel section</string>
-    <string name="angle_section">Angle section</string>
+    <string name="angle_section">Double Angle section</string>
     <string name="built_section">Built section</string>
 
     <!-- Page one compression member -->
@@ -101,9 +101,11 @@
     <string name="enter_fcd_1">Enter the first Fcd value</string>
     <string name="enter_fcd_2">Enter the Second Fcd value</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="first_fcd">First Fcd</string>
     <string name="second_fcd">Second Fcd</string>
+    <string name="fcd">Fcd Value</string>
+    <string name="section_area">Section Area</string>
+    <string name="strength_section">Strength Section</string>
 
 </resources>

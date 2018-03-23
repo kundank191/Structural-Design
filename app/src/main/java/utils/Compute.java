@@ -241,19 +241,34 @@ public class Compute {
     }
 
     public static String UpperSlendernessRatio(String slendernessRatio){
-        float sr = Float.parseFloat(slendernessRatio);
-        sr = sr / 10;
-        sr = sr * 10;
-        int sr2 = Math.round(sr);
-        return String.valueOf(sr2);
-    }
-
-    public static String LowerSlendernessRatio(String slendernessRatio){
-        float sr = Float.parseFloat(slendernessRatio);;
+        float sr2 = Float.parseFloat(slendernessRatio);
+        int sr = Math.round(sr2);
         sr = sr / 10;
         sr = sr + 1;
         sr = sr * 10;
-        int sr2 = Math.round(sr);
         return String.valueOf(sr);
+    }
+
+    public static String LowerSlendernessRatio(String slendernessRatio){
+        float sr2 = Float.parseFloat(slendernessRatio);;
+        int sr = Math.round(sr2);
+        sr = sr / 10;
+        sr = sr * 10;
+        return String.valueOf(sr);
+    }
+
+    public static String FcdValue(String lower_sr
+                                    , String upper_sr
+                                    , String slendernessRatio
+                                    , String lower_fcd
+                                    , String upper_fcd){
+        float slope = (getFloatOf(upper_fcd) - getFloatOf(lower_fcd))/(getFloatOf(upper_sr) - getFloatOf(lower_sr));
+        float xValue = getFloatOf(slendernessRatio) - getFloatOf(lower_sr);
+        float yValue = getFloatOf(lower_fcd) + xValue*slope;
+        return String.valueOf(yValue);
+    }
+
+    public static String SectionStrength(String fcdValue, String scetionArea){
+        return String.valueOf(getFloatOf(fcdValue)*getFloatOf(scetionArea)/1000);
     }
 }

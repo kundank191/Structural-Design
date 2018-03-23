@@ -62,7 +62,7 @@ class CFragmentThree : android.app.Fragment() {
         } else {
             doCalculations()
         }
-        val text: String = getString(R.string.SlendernessRatio) + " : " + mViewModel.section_SR
+        val text: String = getString(R.string.SlendernessRatio) + " : " + FunctionKit.getTwoDecimalValue(mViewModel.section_SR)
         rootView.page_three_slenderness_ratio.text = text
         rootView.s_r_1.text = FunctionKit.getTwoDecimalValue(mViewModel.lower_SR)
         rootView.s_r_2.text = FunctionKit.getTwoDecimalValue(mViewModel.upper_SR)

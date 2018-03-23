@@ -4,7 +4,7 @@ import android.app.Fragment
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
+import com.example.android.sd.CompressionFragments.CFragmentFour
 import com.example.android.sd.CompressionFragments.CFragmentOne
 import com.example.android.sd.CompressionFragments.CFragmentThree
 import com.example.android.sd.CompressionFragments.CFragmentTwo
@@ -17,7 +17,9 @@ class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListen
                                                 , CFragmentTwo.OnNextClickListener
                                                 , CFragmentTwo.OnPreviousClickListener
                                                 , CFragmentThree.OnNextClickListener
-                                                , CFragmentThree.OnPreviousClickListener{
+                                                , CFragmentThree.OnPreviousClickListener
+                                                , CFragmentFour.OnNextClickListener
+                                                , CFragmentFour.OnPreviousClickListener{
 
     lateinit var mViewModel : CompressionViewModel
 
@@ -72,7 +74,7 @@ class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListen
     }
 
     /**
-     * Revisits the first fragment
+     * Goto third fragment
      */
     private fun addThirdFragment() {
         fragmentManager.beginTransaction()
@@ -81,7 +83,7 @@ class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListen
     }
 
     /**
-     * Preparing second fragment with default values
+     * Preparing Third fragment with default values
      */
     private fun revisitThirdFragment(){
         val bundle : Bundle = Bundle()
@@ -90,6 +92,15 @@ class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListen
         fragment.arguments = bundle
         fragmentManager.beginTransaction()
                 .replace(R.id.frame_layout, fragment as Fragment)
+                .commit()
+    }
+
+    /**
+     * Goto fourth fragment
+     */
+    private fun addFourthFragment() {
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_layout, CFragmentFour() as Fragment)
                 .commit()
     }
 
@@ -110,10 +121,21 @@ class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListen
     }
 
     override fun onPageThreeNextClickListener() {
-        Log.i("Hello","Hello")
+        mViewModel.fcdValue = Compute.FcdValue(mViewModel.lower_SR,mViewModel.upper_SR,mViewModel.section_SR
+                                                , mViewModel.lowerFcdValue , mViewModel.upperFcdValue)
+        mViewModel.strengthSection = Compute.SectionStrength(mViewModel.fcdValue,mViewModel.section_area)
+        addFourthFragment()
     }
 
     override fun onPageThreePreviousClickListener() {
         revisitSecondFragment()
+    }
+
+    override fun onPageFourCompleteClickListener() {
+        finish()
+    }
+
+    override fun onPageFourPreviousClickListener() {
+        revisitThirdFragment()
     }
 }
