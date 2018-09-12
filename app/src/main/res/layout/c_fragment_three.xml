@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.example.android.sd.CompressionFragments.CFragmentThree">
+    tools:context=".ui.steel.members.compression.CompressionFragments.CFragmentThree">
 
     <TextView
         android:id="@+id/page_three_slenderness_ratio"

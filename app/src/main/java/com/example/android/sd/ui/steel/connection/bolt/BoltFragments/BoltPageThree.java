@@ -1,4 +1,4 @@
-package com.example.android.sd.BoltFragments;
+package com.example.android.sd.ui.steel.connection.bolt.BoltFragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,11 +13,11 @@ import android.widget.TextView;
 
 import com.example.android.sd.R;
 
-import utils.Variables;
+import com.example.android.sd.ui.steel.utils.Variables;
 
-import static utils.FunctionKit.getFloatOf;
-import static utils.FunctionKit.getSnackBar;
-import static utils.FunctionKit.getTwoDecimalValue;
+import static com.example.android.sd.ui.steel.utils.FunctionKit.getFloatOf;
+import static com.example.android.sd.ui.steel.utils.FunctionKit.getSnackBar;
+import static com.example.android.sd.ui.steel.utils.FunctionKit.getTwoDecimalValue;
 
 /**
  * A simple {@link Fragment} subclass.

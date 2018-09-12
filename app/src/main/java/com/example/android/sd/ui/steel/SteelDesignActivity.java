@@ -1,4 +1,4 @@
-package com.example.android.sd;
+package com.example.android.sd.ui.steel;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,13 +12,18 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.example.android.sd.R;
+import com.example.android.sd.ui.steel.connection.bolt.BoltActivity;
+import com.example.android.sd.ui.steel.connection.weld.WeldActivity;
+import com.example.android.sd.ui.steel.members.compression.CompressionActivity;
+import com.example.android.sd.ui.steel.utils.Variables;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import utils.Variables;
 
-import static utils.FunctionKit.getSnackBar;
+import static com.example.android.sd.ui.steel.utils.FunctionKit.getSnackBar;
 
-public class MainActivity extends AppCompatActivity {
+public class SteelDesignActivity extends AppCompatActivity {
 
     @BindView(R.id.firstPage_CoordinateLayout)
     CoordinatorLayout mCoordinateLayout;
@@ -33,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_steel_design);
 
         ButterKnife.bind(this);
 

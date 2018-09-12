@@ -1,4 +1,4 @@
-package com.example.android.sd.ViewModels
+package com.example.android.sd.ui.steel.members.compression
 
 import android.arch.lifecycle.ViewModel
 

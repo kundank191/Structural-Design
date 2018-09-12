@@ -1,4 +1,4 @@
-package com.example.android.sd.CompressionFragments
+package com.example.android.sd.ui.steel.members.compression.CompressionFragments
 
 import android.app.Activity
 import android.app.Fragment
@@ -12,12 +12,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import com.example.android.sd.R
-import com.example.android.sd.ViewModels.CompressionViewModel
+import com.example.android.sd.ui.steel.members.compression.CompressionViewModel
 import kotlinx.android.synthetic.main.c_fragment_one.*
 import kotlinx.android.synthetic.main.c_fragment_one.view.*
-import utils.Compute
-import utils.FunctionKit
-import utils.Variables
+import com.example.android.sd.ui.steel.utils.Compute
+import com.example.android.sd.ui.steel.utils.FunctionKit
+import com.example.android.sd.ui.steel.utils.Variables
 
 
 /**

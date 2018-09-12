@@ -1,4 +1,4 @@
-package com.example.android.sd.BoltFragments;
+package com.example.android.sd.ui.steel.connection.bolt.BoltFragments;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.example.android.sd.R;
 
-import utils.Variables;
+import com.example.android.sd.ui.steel.utils.Variables;
 
 /**
  * A simple {@link Fragment} subclass.

@@ -1,4 +1,4 @@
-package utils;
+package com.example.android.sd.ui.steel.utils;
 
 import android.arch.lifecycle.ViewModel;
 

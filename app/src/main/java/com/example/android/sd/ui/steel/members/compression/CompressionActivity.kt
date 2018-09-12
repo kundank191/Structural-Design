@@ -1,16 +1,16 @@
-package com.example.android.sd
+package com.example.android.sd.ui.steel.members.compression
 
 import android.app.Fragment
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.example.android.sd.CompressionFragments.CFragmentFour
-import com.example.android.sd.CompressionFragments.CFragmentOne
-import com.example.android.sd.CompressionFragments.CFragmentThree
-import com.example.android.sd.CompressionFragments.CFragmentTwo
-import com.example.android.sd.ViewModels.CompressionViewModel
-import utils.Compute
-import utils.Variables
+import com.example.android.sd.R
+import com.example.android.sd.ui.steel.members.compression.CompressionFragments.CFragmentFour
+import com.example.android.sd.ui.steel.members.compression.CompressionFragments.CFragmentOne
+import com.example.android.sd.ui.steel.members.compression.CompressionFragments.CFragmentThree
+import com.example.android.sd.ui.steel.members.compression.CompressionFragments.CFragmentTwo
+import com.example.android.sd.ui.steel.utils.Compute
+import com.example.android.sd.ui.steel.utils.Variables
 
 class CompressionActivity : AppCompatActivity() , CFragmentOne.OnNextClickListener
                                                 , CFragmentOne.OnPreviousClickListener

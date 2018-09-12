@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.example.android.sd.WeldActivity">
+    tools:context="com.example.android.sd.ui.steel.connection.weld.WeldActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

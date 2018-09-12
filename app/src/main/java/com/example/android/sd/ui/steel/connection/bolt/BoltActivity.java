@@ -1,4 +1,4 @@
-package com.example.android.sd;
+package com.example.android.sd.ui.steel.connection.bolt;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -6,15 +6,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import com.example.android.sd.BoltFragments.BoltPageFour;
-import com.example.android.sd.BoltFragments.BoltPageOne;
-import com.example.android.sd.BoltFragments.BoltPageThree;
-import com.example.android.sd.BoltFragments.BoltPageTwo;
+import com.example.android.sd.ui.steel.connection.bolt.BoltFragments.BoltPageFour;
+import com.example.android.sd.ui.steel.connection.bolt.BoltFragments.BoltPageOne;
+import com.example.android.sd.ui.steel.connection.bolt.BoltFragments.BoltPageThree;
+import com.example.android.sd.ui.steel.connection.bolt.BoltFragments.BoltPageTwo;
+import com.example.android.sd.R;
 
-import utils.Compute;
-import utils.Variables;
+import com.example.android.sd.ui.steel.utils.Compute;
+import com.example.android.sd.ui.steel.utils.Variables;
 
-import static utils.FunctionKit.getFloatOf;
+import static com.example.android.sd.ui.steel.utils.FunctionKit.getFloatOf;
 
 public class BoltActivity extends AppCompatActivity implements BoltPageOne.onFABNextClickListener,
                                                                 BoltPageOne.onFABPreviousClickListener,

@@ -1,4 +1,4 @@
-package com.example.android.sd.CompressionFragments
+package com.example.android.sd.ui.steel.members.compression.CompressionFragments
 
 import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
@@ -11,11 +11,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.android.sd.R
-import com.example.android.sd.ViewModels.CompressionViewModel
+import com.example.android.sd.ui.steel.members.compression.CompressionViewModel
+import com.example.android.sd.ui.steel.utils.Compute
+import com.example.android.sd.ui.steel.utils.FunctionKit
+import com.example.android.sd.ui.steel.utils.Variables
 import kotlinx.android.synthetic.main.c_fragment_three.view.*
-import utils.Compute
-import utils.FunctionKit
-import utils.Variables
 
 /**
  * A simple [Fragment] subclass.

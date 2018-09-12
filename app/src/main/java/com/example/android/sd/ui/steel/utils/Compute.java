@@ -1,6 +1,6 @@
-package utils;
+package com.example.android.sd.ui.steel.utils;
 
-import static utils.FunctionKit.getFloatOf;
+import static com.example.android.sd.ui.steel.utils.FunctionKit.getFloatOf;
 
 /**
  * Created by Kundan on 15-02-2018.
