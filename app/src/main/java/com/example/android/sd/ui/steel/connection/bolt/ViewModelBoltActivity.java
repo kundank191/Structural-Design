@@ -1,6 +1,8 @@
-package com.example.android.sd.ui.steel.utils;
+package com.example.android.sd.ui.steel.connection.bolt;
 
 import android.arch.lifecycle.ViewModel;
+
+import com.example.android.sd.ui.steel.utils.Variables;
 
 /**
  * Created by Kundan on 16-02-2018.
