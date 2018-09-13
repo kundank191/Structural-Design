@@ -107,5 +107,10 @@
     <string name="fcd">Fcd Value</string>
     <string name="section_area">Section Area</string>
     <string name="strength_section">Strength Section</string>
+    <string name="rcc_design">RCC design</string>
+    <string name="steel_design">Steel Design</string>
+    <string name="app_intro_title">Design civil structures fast</string>
+    <string name="app_intro_description">Use this app to design structures faster and also use these results to practice and be better</string>
+    <string name="available_design">Design availiable</string>
 
 </resources>
