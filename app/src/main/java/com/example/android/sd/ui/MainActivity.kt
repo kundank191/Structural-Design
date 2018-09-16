@@ -1,10 +1,9 @@
 package com.example.android.sd.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import com.example.android.sd.R
-import com.example.android.sd.ui.steel.SteelDesignActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -20,13 +19,17 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun init() {
-        //currently it will only open Steel Design Activity
-        button_rcc_design.setOnClickListener {
-            startActivity(Intent(this,SteelDesignActivity::class.java))
-        }
-
-        button_steel_design.setOnClickListener {
-            startActivity(Intent(this,SteelDesignActivity::class.java))
-        }
+        initializeRecyclerView()
     }
+
+    private fun initializeRecyclerView() {
+        val designTypeList = mutableListOf<DesignType>()
+        designTypeList.add(DesignType(R.mipmap.ic_launcher, getString(R.string.steel_design_text)))
+        designTypeList.add(DesignType(R.mipmap.ic_launcher, getString(R.string.rcc_design_text)))
+
+        design_type_rv.layoutManager = LinearLayoutManager(this)
+        design_type_rv.adapter = DesignTypeAdapter(designTypeList, this)
+    }
+
+    class DesignType(var imageID: Int = R.mipmap.ic_launcher, var designType: String = "Design Type")
 }

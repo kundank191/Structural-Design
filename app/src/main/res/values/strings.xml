@@ -113,5 +113,7 @@
     <string name="app_intro_description">Use this app to design structures faster and also use these results to practice and be better</string>
     <string name="available_design">Design availiable</string>
     <string name="design_text">Design Text</string>
+    <string name="steel_design_text">Steel Design</string>
+    <string name="rcc_design_text">RCC Design</string>
 
 </resources>
